@@ -1,0 +1,57 @@
+buckets:
+  - name: automationforaccountants.com
+    region: us-east-1
+  - name: automationforairbnb.com
+    region: us-east-1
+  - name: automationforamazon.com
+    region: us-east-1
+  - name: automationforclinics.com
+    region: us-east-1
+  - name: automationfordental.com
+    region: us-east-1
+  - name: automationforebay.com
+    region: us-east-1
+  - name: automationforecommerce.com
+    region: us-east-1
+  - name: automationforeletricians.com
+    region: us-east-1
+  - name: automationforetsy.com
+    region: us-east-1
+  - name: automationforeventplanning.com
+    region: us-east-1
+  - name: automationforfinance.com
+    region: us-east-1
+  - name: automationforhealthcare.com
+    region: us-east-1
+  - name: automationforhospitality.com
+    region: us-east-1
+  - name: automationforhr.com
+    region: us-east-1
+  - name: automationforhvac.com
+    region: us-east-1
+  - name: automationforinsurance.com
+    region: us-east-1
+  - name: automationforlegal.com
+    region: us-east-1
+  - name: automationforlogistics.com
+    region: us-east-1
+  - name: automationforplumbing.com
+    region: us-east-1
+  - name: automationforprivateequity.com
+    region: us-east-1
+  - name: automationforpropertymanagement.com
+    region: us-east-1
+  - name: automationforrealty.com
+    region: us-east-1
+  - name: automationforrecruiting.com
+    region: us-east-1
+  - name: automationforrestaurants.com
+    region: us-east-1
+  - name: automationforretail.com
+    region: us-east-1
+  - name: automationforshopify.com
+    region: us-east-1
+  - name: automationforsmallbusinesses.com
+    region: us-east-1
+  - name: automationforvets.com
+    region: us-east-1
