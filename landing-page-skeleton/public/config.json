@@ -1,0 +1,84 @@
+{
+    "header": "Automation for Finance",
+    "icon": "money-bill",
+    "title": "Ace the Finance Automation with just 10-minutes of studying a day",
+    "description": "10-min micro lessons designed to boost confidence and make automation strategies easy to remember.",
+    "buttonText": "Get started for just $1",
+    "userReviews": [
+      {
+        "name": "user1",
+        "image": "https://via.placeholder.com/40"
+      },
+      {
+        "name": "user2",
+        "image": "https://via.placeholder.com/40"
+      },
+      {
+        "name": "user3",
+        "image": "https://via.placeholder.com/40"
+      }
+    ],
+    "videoUrl": "https://www.youtube.com/embed/XMhU3bRsezA",
+    "imageUrl": "https://via.placeholder.com/600x400",
+    "painpointsTitle": "We've automated the following painpoints for companies in your space",
+    "painpoints": [
+      "Automated invoicing and billing processes",
+      "Streamlined customer support workflows",
+      "Optimized supply chain management",
+      "Enhanced data analytics and reporting",
+      "Improved employee onboarding procedures"
+    ],
+    "shortParagraph": "Our solutions have proven to reduce costs and increase efficiency. Join many satisfied clients in transforming your business today.",
+    "contactFormOptions": [
+      "Automated invoicing",
+      "Customer support workflows",
+      "Supply chain management",
+      "Data analytics",
+      "Employee onboarding"
+    ],
+    "howItWorksTitle": "How It Works",
+    "howItWorksDescription": "Discover the simplicity and efficiency of our automation process:",
+    "howItWorksSteps": [
+      "Step 1: Initial consultation to understand your needs",
+      "Step 2: Custom automation plan tailored to your business",
+      "Step 3: Implementation of automated workflows",
+      "Step 4: Training and support for your team",
+      "Step 5: Ongoing optimization and monitoring"
+    ],
+    "theAutomationSpeaksTitle": "The Automation Speaks for Itself",
+    "theAutomationSpeaksText": "Our automation solutions have led to significant improvements in efficiency and cost savings for numerous clients. The results speak volumes about the transformative power of automation.",
+    "theAutomationSpeaksImage": "https://via.placeholder.com/600x400",
+    "socialValidationTitle": "Social Validation",
+    "socialValidationText": "Here are some testimonials from our satisfied clients and partners. Their success stories speak volumes about the effectiveness of our solutions.",
+    "faqTitle": "Frequently Asked Questions",
+    "faqItems": [
+      {
+        "question": "What is automation?",
+        "answer": "Automation involves using technology to perform tasks with minimal human intervention."
+      },
+      {
+        "question": "How can automation benefit my business?",
+        "answer": "Automation can increase efficiency, reduce errors, save time, and lower costs."
+      },
+      {
+        "question": "What types of tasks can be automated?",
+        "answer": "Tasks such as invoicing, customer support, supply chain management, and data analysis can be automated."
+      }
+    ],
+    "secondCtaTitle": "Join hundreds of businesses who are doing more with email.",
+    "secondCtaTestimonial": "\"I saw immediate results. I got more replies and closed more deals, all inside Gmail.\" - Fabrizio Rinaldi",
+    "secondCtaButtonText": "Add to Gmail with one click",
+    "secondCtaUsers": [
+      { "image": "https://via.placeholder.com/40" },
+      { "image": "https://via.placeholder.com/40" },
+      { "image": "https://via.placeholder.com/40" },
+      { "image": "https://via.placeholder.com/40" },
+      { "image": "https://via.placeholder.com/40" },
+      { "image": "https://via.placeholder.com/40" },
+      { "image": "https://via.placeholder.com/40" },
+      { "image": "https://via.placeholder.com/40" },
+      { "image": "https://via.placeholder.com/40" }
+    ],
+    "footerText": "&copy; 2024 Automation for Finance. All rights reserved."
+  }
+  
