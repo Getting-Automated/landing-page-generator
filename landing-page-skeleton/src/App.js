@@ -25,11 +25,15 @@ function App() {
 
   return (
     <div className="App">
-      <HeaderBar header={config.header} icon={config.icon} />
+      <HeaderBar 
+        header={config.header} 
+        icon={config.icon} 
+        />
       <LandingHeader
         title={config.title}
         description={config.description}
         buttonText={config.buttonText}
+        buttonLink={config.heroButtonLink}
         userReviews={config.userReviews}
         videoUrl={config.videoUrl}
         imageUrl={config.imageUrl}

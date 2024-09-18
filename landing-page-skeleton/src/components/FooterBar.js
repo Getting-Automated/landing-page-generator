@@ -4,7 +4,7 @@ const FooterBar = ({ footerText }) => {
   return (
     <div className="bg-black text-white py-4">
       <div className="container mx-auto text-center">
-        <p>{footerText}</p>
+        <p dangerouslySetInnerHTML={{ __html: footerText }}></p>
       </div>
     </div>
   );

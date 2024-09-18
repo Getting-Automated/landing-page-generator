@@ -14,10 +14,10 @@ const SecondCTA = ({ title, testimonial, buttonText, users }) => {
             />
           ))}
         </div>
-        <h2 className="text-4xl font-bold mb-4 text-center">{title}</h2>
-        <p className="text-lg text-center italic mb-4">{testimonial}</p>
+        <h2 className="text-4xl font-bold mb-4 text-center" dangerouslySetInnerHTML={{ __html: title }}></h2>
+        <p className="text-lg text-center italic mb-4" dangerouslySetInnerHTML={{ __html: testimonial }}></p>
         <div className="flex justify-center">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">{buttonText}</button>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg" dangerouslySetInnerHTML={{ __html: buttonText }}></button>
         </div>
       </div>
     </div>
