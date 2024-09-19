@@ -12,12 +12,26 @@ import FooterBar from './components/FooterBar';
 
 function App() {
   const [config, setConfig] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/config.json')
-      .then(response => response.json())
-      .then(data => setConfig(data));
+    fetch(`${process.env.PUBLIC_URL}/config.json`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => setConfig(data))
+      .catch(error => {
+        console.error('Error loading config:', error);
+        setError(error.message);
+      });
   }, []);
+
+  if (error) {
+    return <div>Error loading configuration: {error}</div>;
+  }
 
   if (!config) {
     return <div>Loading...</div>;
