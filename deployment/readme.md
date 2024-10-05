@@ -44,8 +44,8 @@ flowchart TB
         A6 -->|Not Exists| C3[Create CloudFront Distribution]
         A6 -->|Exists| D2[Validate CloudFront Distribution]
     
-        A6 --> A7[Check Existing SSL Certificate]
-        A7 -->|Not Exists| C4[Request and Validate SSL Certificate]
+        A5 --> A7[Check Existing SSL Certificate]
+        A7 -->|Not Exists| C4[Request SSL Certificate]
         A7 -->|Exists| D3[Validate SSL Certificate]
     end
     
@@ -57,6 +57,12 @@ flowchart TB
     subgraph CloudFront Setup
         A9 --> C3
         C3 & D2 --> A10[Invalidate CloudFront Cache]
+    end
+    
+    subgraph Certificate Validation
+        C4 --> C9[Create DNS Validation Records]
+        C9 --> C10[Wait for Certificate Validation]
+        C10 --> D3
     end
     
     subgraph DNS Configuration
