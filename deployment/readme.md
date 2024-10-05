@@ -61,7 +61,7 @@ flowchart TB
     
     subgraph DNS Configuration
         A10 --> A11{DNS Method}
-        A11 -->|Route  C5[Configure Route 53]
+        A11 -->|Route 53| C5[Configure Route 53]
         C5 --> C6[Create/Get Hosted Zone]
         C6 --> C7[Update DNS Records]
         C7 --> D4[Check DNS Propagation]
@@ -109,8 +109,8 @@ flowchart LR
 
     A0 -- User enters --> FQDN[yourdomain.com]
     FQDN -->|DNS Query| B1
-    B1 -->|DNS Response (CNAME)| C1_Domain[CloudFront Domain]
-    A0 -- HTTPS Request to CloudFront Domain --> C1
+    B1 -->|DNS Response CNAME| C1
+    A0 -- HTTPS Request --> C1
     C1 -- Uses SSL Cert --> D2
     C1 -- Retrieves Content --> D1
     D1 -- Serves Files --> C1
