@@ -81,10 +81,10 @@ function App() {
                 description={config.howItWorksDescription}
                 steps={config.howItWorksSteps}
               />
-              <SocialValidation
+              {/* <SocialValidation
                 title={config.socialValidationTitle}
                 text={config.socialValidationText}
-              />
+              /> */}
               <FAQSection
                 title={config.faqTitle}
                 faqItems={config.faqItems}

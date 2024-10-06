@@ -32,11 +32,11 @@
   ],
   "shortParagraph": "Staffing agencies face critical pain points in managing timesheets, invoicing, and payroll processes. These manual tasks consume valuable time and resources, leading to errors and inefficiencies. Enter Workflowsy's automation consultancy – your perfect solution to streamline these challenges. Our expertise in timesheet collection, approval workflows, invoice generation, and payroll automation can reduce your administrative burden by over 80%. By implementing our end-to-end automated workflow, you'll free up time to focus on what truly matters: growing your business and nurturing client relationships. Don't let outdated processes hold you back. Learn how our tailored automation solutions can transform your staffing agency – contact us today to discover the power of efficiency!</br></br>",
   "contactFormOptions": [
-    "Automated invoicing",
-    "Customer support workflows",
-    "Supply chain management",
-    "Data analytics",
-    "Employee onboarding"
+    "Entire Workflow",
+    "Automated Timesheets & Approval",
+    "Automated Invoicing",
+    "Automated Payroll",
+    "Something Else"
   ],
   "contactFormLambdaURL": "https://l4gp3adm7ct2iarebrdv5r2mf40hmtlw.lambda-url.us-east-1.on.aws/",
   "contactPageLink": "/contact",
@@ -52,7 +52,7 @@
   ],
   "theAutomationSpeaksTitle": "The Automation Speaks for Itself",
   "theAutomationSpeaksText": "Revolutionize your staffing agency's operations with our end-to-end automation solution for timesheet collection, approval, invoice generation, and payroll processing. This powerful workflow streamlines your administrative tasks, reducing time spent on these processes by over 80%.</br></br>Imagine a seamless process where:</br><b>1. Timesheets are collected:</b> Employees submit their hours through a user-friendly digital interface.</br><b>2. Approvals are automated:</b> Managers receive instant notifications and can quickly approve or flag discrepancies.</br><b>3. Invoices are generated:</b> Once approved, the system automatically creates accurate invoices for clients.</br><b>4. Payroll is processed:</b> Employee payments are calculated and initiated without manual intervention.</br></br>By implementing this automation, your staffing agency can:</br>- Eliminate human errors and data inconsistencies</br>- Improve cash flow with faster invoicing and collections</br>- Enhance employee and client satisfaction with timely, accurate payments</br>- Free up valuable staff time for high-value tasks like recruitment and client relations</br></br>The underlying value lies in transforming time-consuming, error-prone manual processes into a streamlined, efficient system that scales with your business growth. This automation not only saves time and resources but also positions your agency as a modern, tech-savvy partner in the competitive staffing industry.",
-  "theAutomationSpeaksImage": "https://via.placeholder.com/500x600",
+  "theAutomationSpeaksImage": "/staffing_workflow.png",
   "socialValidationTitle": "Social Validation",
   "socialValidationText": "Here are some testimonials from our satisfied clients and partners. Their success stories speak volumes about the effectiveness of our solutions.",
   "faqTitle": "Frequently Asked Questions",

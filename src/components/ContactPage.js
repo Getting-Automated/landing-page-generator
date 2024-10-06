@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ContactForm from './ContactForm';
 
 const ContactPage = ({ 
@@ -12,9 +12,32 @@ const ContactPage = ({
   scheduleCallTitle
 }) => {
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [calendlyLoaded, setCalendlyLoaded] = useState(false);
+  const calendlyRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !calendlyLoaded) {
+          const script = document.createElement('script');
+          script.src = 'https://assets.calendly.com/assets/external/widget.js';
+          script.async = true;
+          script.onload = () => setCalendlyLoaded(true);
+          document.body.appendChild(script);
+        }
+      },
+      { rootMargin: '200px' } // Load when within 200px of viewport
+    );
+
+    if (calendlyRef.current) {
+      observer.observe(calendlyRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [calendlyLoaded]);
 
   return (
-    <div className="bg-gray-100 min-h-screen py-12">
+    <div className="bg-white min-h-screen py-12">
       <div className="container mx-auto px-4">
         <h1 className="text-4xl font-bold mb-4 text-center">{title}</h1>
         <p className="text-xl text-center mb-8">
@@ -40,14 +63,13 @@ const ContactPage = ({
             </div>
             <div className="w-full md:w-1/2">
               <h2 className="text-2xl font-semibold mb-4">{scheduleCallTitle}</h2>
-              <div className="calendly-embed-container" style={{ minWidth: '320px', height: '630px' }}>
-                <iframe
-                  src={calendlyUrl}
-                  width="100%"
-                  height="100%"
-                  frameBorder="0"
-                  title="Schedule a call with us"
-                ></iframe>
+              <div 
+                ref={calendlyRef}
+                className="calendly-inline-widget" 
+                data-url={calendlyUrl}
+                style={{ minWidth: '320px', height: '630px' }}
+              >
+                {!calendlyLoaded && <p>Loading scheduler...</p>}
               </div>
             </div>
           </div>

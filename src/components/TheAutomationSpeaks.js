@@ -2,20 +2,24 @@ import React from 'react';
 
 const TheAutomationSpeaks = ({ title, text, image }) => {
   return (
-    <section className="bg-white text-gray-900 py-12">
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
-        <div className="mb-8 overflow-hidden rounded-lg shadow-lg">
-          <img 
-            className="w-full h-64 md:h-96 object-cover" 
-            src={image} 
-            alt="Automation results" 
-          />
+        <h2 className="text-3xl font-bold mb-8 text-center">{title}</h2>
+        <div className="flex flex-col items-center">
+          <div className="w-2/3 mb-8">
+            <img 
+              src={`${process.env.PUBLIC_URL}${image}`} 
+              alt="Staffing Workflow" 
+              className="w-full h-auto object-contain rounded-lg shadow-md"
+            />
+          </div>
+          <div className="w-full">
+            <p className="text-lg mb-4" dangerouslySetInnerHTML={{ __html: text }}></p>
+          </div>
         </div>
-        <h2 className="text-3xl font-bold mb-6 text-center" dangerouslySetInnerHTML={{ __html: title }}></h2>
-        <div className="prose prose-lg max-w-none text-lg" dangerouslySetInnerHTML={{ __html: text }}></div>
       </div>
     </section>
   );
-}
+};
 
 export default TheAutomationSpeaks;
