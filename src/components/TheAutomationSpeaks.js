@@ -2,17 +2,19 @@ import React from 'react';
 
 const TheAutomationSpeaks = ({ title, text, image }) => {
   return (
-    <div className="bg-white text-gray-900 py-8">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between">
-        <div className="md:w-2/3 mb-8 md:mb-0">
-          <h2 className="text-2xl font-bold mb-4 text-left" dangerouslySetInnerHTML={{ __html: title }}></h2>
-          <p className="text-lg text-left pr-8" dangerouslySetInnerHTML={{ __html: text }}></p>
+    <section className="bg-white text-gray-900 py-12">
+      <div className="container mx-auto px-4">
+        <div className="mb-8 overflow-hidden rounded-lg shadow-lg">
+          <img 
+            className="w-full h-64 md:h-96 object-cover" 
+            src={image} 
+            alt="Automation results" 
+          />
         </div>
-        <div className="md:w-1/3">
-          <img className="rounded-lg shadow-lg" src={image} alt="Automation results" />
-        </div>
+        <h2 className="text-3xl font-bold mb-6 text-center" dangerouslySetInnerHTML={{ __html: title }}></h2>
+        <div className="prose prose-lg max-w-none text-lg" dangerouslySetInnerHTML={{ __html: text }}></div>
       </div>
-    </div>
+    </section>
   );
 }
 

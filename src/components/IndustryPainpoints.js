@@ -10,10 +10,10 @@ const IndustryPainpoints = ({ title, painpoints, contactFormOptions, shortParagr
           <div className="w-full lg:w-2/3 px-4 mb-8 lg:mb-0">
             <ul className="list-disc pl-5 mb-8">
               {painpoints.map((point, index) => (
-                <li key={index} className="mb-4" dangerouslySetInnerHTML={{ __html: point }} />
+                <li key={index} className="mb-4 text-lg" dangerouslySetInnerHTML={{ __html: point }} />
               ))}
             </ul>
-            <p className="mb-8" dangerouslySetInnerHTML={{ __html: shortParagraph }} />
+            <p className="mb-8 text-lg" dangerouslySetInnerHTML={{ __html: shortParagraph }} />
           </div>
           <div className="w-full lg:w-1/3 px-4">
             <ContactForm 

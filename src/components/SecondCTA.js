@@ -1,23 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const SecondCTA = ({ title, testimonial, buttonText, users }) => {
+const SecondCTA = ({ title, testimonial, buttonText, buttonLink, users }) => {
   return (
     <div className="bg-gray-900 text-white py-8">
       <div className="container mx-auto px-4">
-        <div className="flex flex-wrap justify-center mb-4">
-          {users.map((user, index) => (
-            <img
-              key={index}
-              className="h-10 w-10 rounded-full border-2 border-white m-1"
-              src={user.image}
-              alt={`User ${index + 1}`}
-            />
-          ))}
-        </div>
         <h2 className="text-4xl font-bold mb-4 text-center" dangerouslySetInnerHTML={{ __html: title }}></h2>
         <p className="text-lg text-center italic mb-4" dangerouslySetInnerHTML={{ __html: testimonial }}></p>
         <div className="flex justify-center">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg" dangerouslySetInnerHTML={{ __html: buttonText }}></button>
+        <Link to={buttonLink} className="inline-block">
+          <button className="bg-blue-500 text-white text-xl px-4 py-2 rounded-2xl text-center hover:bg-blue-600 transition duration-300">
+            <span dangerouslySetInnerHTML={{ __html: buttonText }}></span>
+          </button>
+        </Link>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 import './App.css';
 import HeaderBar from './components/HeaderBar';
@@ -10,6 +11,7 @@ import SocialValidation from './components/SocialValidation';
 import FAQSection from './components/FAQSection';
 import SecondCTA from './components/SecondCTA';
 import FooterBar from './components/FooterBar';
+import ContactPage from './components/ContactPage';
 
 function App() {
   const [config, setConfig] = useState(null);
@@ -43,54 +45,75 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <HeaderBar 
-        header={config.header} 
-        icon={config.icon} 
-      />
-      <LandingHeader
-        title={config.title}
-        description={config.description}
-        buttonText={config.buttonText}
-        buttonLink={config.heroButtonLink}
-        userReviews={config.userReviews}
-        videoUrl={config.videoUrl}
-        imageUrl={config.imageUrl}
-      />
-      <IndustryPainpoints
-        title={config.painpointsTitle}
-        painpoints={config.painpoints}
-        contactFormOptions={config.contactFormOptions}
-        shortParagraph={config.shortParagraph}
-        domainName={config.domainName}
-        contactFormLambdaUrl={config.contactFormLambdaUrl}
-      />
-      <TheAutomationSpeaks
-        title={config.theAutomationSpeaksTitle}
-        text={config.theAutomationSpeaksText}
-        image={config.theAutomationSpeaksImage}
-      />
-      <HowItWorks
-        title={config.howItWorksTitle}
-        description={config.howItWorksDescription}
-        steps={config.howItWorksSteps}
-      />
-      <SocialValidation
-        title={config.socialValidationTitle}
-        text={config.socialValidationText}
-      />
-      <FAQSection
-        title={config.faqTitle}
-        faqItems={config.faqItems}
-      />
-      <SecondCTA
-        title={config.secondCtaTitle}
-        testimonial={config.secondCtaTestimonial}
-        buttonText={config.secondCtaButtonText}
-        users={config.secondCtaUsers}
-      />
-      <FooterBar footerText={config.footerText} />
-    </div>
+    <Router>
+      <div className="App">
+        <HeaderBar 
+          header={config.header} 
+          icon={config.icon} 
+        />
+        <Routes>
+          <Route path="/" element={
+            <>
+              <LandingHeader
+                title={config.title}
+                description={config.description}
+                buttonText={config.buttonText}
+                buttonLink={config.contactPageLink}
+                userReviews={config.userReviews}
+                videoUrl={config.videoUrl}
+                imageUrl={config.imageUrl}
+              />
+              <IndustryPainpoints
+                title={config.painpointsTitle}
+                painpoints={config.painpoints}
+                contactFormOptions={config.contactFormOptions}
+                shortParagraph={config.shortParagraph}
+                domainName={config.domainName}
+                contactFormLambdaUrl={config.contactFormLambdaUrl}
+              />
+              <TheAutomationSpeaks
+                title={config.theAutomationSpeaksTitle}
+                text={config.theAutomationSpeaksText}
+                image={config.theAutomationSpeaksImage}
+              />
+              <HowItWorks
+                title={config.howItWorksTitle}
+                description={config.howItWorksDescription}
+                steps={config.howItWorksSteps}
+              />
+              <SocialValidation
+                title={config.socialValidationTitle}
+                text={config.socialValidationText}
+              />
+              <FAQSection
+                title={config.faqTitle}
+                faqItems={config.faqItems}
+              />
+              <SecondCTA
+                title={config.secondCtaTitle}
+                testimonial={config.secondCtaTestimonial}
+                buttonText={config.secondCtaButtonText}
+                buttonLink={config.contactPageLink}
+                users={config.secondCtaUsers}
+              />
+            </>
+          } />
+          <Route path={config.contactPageLink} element={
+            <ContactPage
+              contactFormOptions={config.contactFormOptions}
+              domainName={config.domainName}
+              contactFormLambdaUrl={config.contactFormLambdaUrl}
+              calendlyUrl={config.calendlyUrl}
+              title={config.contactPageTitle}
+              blurb={config.contactPageBlurb}
+              contactFormTitle={config.contactFormTitle}
+              scheduleCallTitle={config.scheduleCallTitle}
+            />
+          } />
+        </Routes>
+        <FooterBar footerText={config.footerText} />
+      </div>
+    </Router>
   );
 }
 

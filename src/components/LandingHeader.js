@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LandingHeader = ({ title, description, buttonText, buttonLink, userReviews, videoUrl }) => {
   return (
@@ -7,28 +8,12 @@ const LandingHeader = ({ title, description, buttonText, buttonLink, userReviews
         <div className="md:w-1/2 mb-8 md:mb-0 pr-2">
           <h1 className="text-5xl font-bold mb-4 mr-4 text-left" dangerouslySetInnerHTML={{ __html: title }}></h1>
           <p className="text-lg mb-4 text-left" dangerouslySetInnerHTML={{ __html: description }}></p>
-          <a href={buttonLink} className="inline-block">
-            <button className="bg-blue-500 text-white text-xl px-4 py-2 rounded-2xl text-center">{buttonText}</button>
-          </a>
+          <Link to={buttonLink} className="inline-block">
+            <button className="bg-blue-500 text-white text-xl px-4 py-2 rounded-2xl text-center hover:bg-blue-600 transition duration-300">
+              {buttonText}
+            </button>
+          </Link>
           <div className="mt-4 flex items-center">
-            <div className="flex -space-x-2">
-              {userReviews.map((user, index) => (
-                <img
-                  key={index}
-                  className="h-10 w-10 rounded-full border-2 border-white"
-                  src={user.image}
-                  alt={user.name}
-                />
-              ))}
-            </div>
-            <div className="ml-4">
-              <div className="flex items-center">
-                <div className="text-yellow-400 flex">
-                  ★★★★★
-                </div>
-              </div>
-              <p className="text-sm">(5/5 from 700+ users)</p>
-            </div>
           </div>
         </div>
         <div className="md:w-1/2 flex flex-col justify-center items-center p-4">
