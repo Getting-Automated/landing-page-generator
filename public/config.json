@@ -1,4 +1,6 @@
 {
+  "domainName": "automationforstaffing.com",
+  "gaTrackingId": "G-WPJKQSD213",
   "header": "Automation For Staffing",
   "icon": "money-bill",
   "title": "Automate Staffing Workflows: 80% Faster Timesheets, Invoices & Payroll",
@@ -30,6 +32,7 @@
     "Data analytics",
     "Employee onboarding"
   ],
+  "contactFormLambdaURL": "https://l4gp3adm7ct2iarebrdv5r2mf40hmtlw.lambda-url.us-east-1.on.aws/",
   "howItWorksTitle": "How It Works",
   "howItWorksDescription": "Revolutionize Your Staffing Agency: Timesheet to Payroll Automation</br></br>Our seamless automation solution transforms your staffing agency's workflow, dramatically reducing time spent on timesheet collection, approval, invoice generation, and payroll processing. By implementing our user-friendly system, you'll experience an astonishing 80% reduction in manual tasks related to these critical processes. Our approach ensures a smooth transition, minimal disruption to your current operations, and maximum efficiency gains. We work closely with your team to tailor the automation to your specific needs, ensuring that you maintain control while freeing up valuable time to focus on growing your business and nurturing client relationships. Experience the power of end-to-end automation that streamlines your operations, improves accuracy, and boosts your bottom line.",
   "howItWorksSteps": ["<b>Step 1: Discovery and Analysis</b> Our team meets with your staffing agency to understand current timesheet, invoicing, and payroll processes.","<b>Step 2: Solution Design</b> We create a custom automation workflow using no-code tools to streamline timesheet collection, approval, invoice generation, and payroll processing.","<b>Step 3: Integration Setup</b> Our experts integrate the chosen tools with your existing systems, ensuring seamless data flow between timesheet submission, approval, invoicing, and payroll.","<b>Step 4: Testing and Refinement</b> We conduct thorough testing of the automated workflow, making necessary adjustments to ensure accuracy and efficiency.","<b>Step 5: Staff Training</b> We provide comprehensive training to your team on using the new automated system for timesheet submission, approval, and accessing payroll information.","<b>Step 6: Go-Live and Support</b> The automated workflow is launched, with our team providing ongoing support to ensure smooth operation and address any issues, reducing manual work by over 80%."],

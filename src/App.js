@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactGA from 'react-ga4';
 import './App.css';
 import HeaderBar from './components/HeaderBar';
 import LandingHeader from './components/LandingHeader';
@@ -22,7 +23,11 @@ function App() {
         }
         return response.json();
       })
-      .then(data => setConfig(data))
+      .then(data => {
+        setConfig(data);
+        ReactGA.initialize(data.gaTrackingId);
+        ReactGA.send({ hitType: "pageview", page: window.location.pathname + window.location.search });
+      })
       .catch(error => {
         console.error('Error loading config:', error);
         setError(error.message);
@@ -42,7 +47,7 @@ function App() {
       <HeaderBar 
         header={config.header} 
         icon={config.icon} 
-        />
+      />
       <LandingHeader
         title={config.title}
         description={config.description}
@@ -57,6 +62,8 @@ function App() {
         painpoints={config.painpoints}
         contactFormOptions={config.contactFormOptions}
         shortParagraph={config.shortParagraph}
+        domainName={config.domainName}
+        contactFormLambdaUrl={config.contactFormLambdaUrl}
       />
       <TheAutomationSpeaks
         title={config.theAutomationSpeaksTitle}

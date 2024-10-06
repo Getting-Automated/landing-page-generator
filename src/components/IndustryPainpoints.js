@@ -1,53 +1,31 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import ContactForm from './ContactForm';
 
-const IndustryPainpoints = ({ title, painpoints }) => {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = "https://tally.so/widgets/embed.js";
-    script.async = true;
-    document.body.appendChild(script);
-
-    script.onload = () => {
-      if (typeof window.Tally !== 'undefined') {
-        window.Tally.loadEmbeds();
-      } else {
-        document.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((e) => {
-          e.src = e.dataset.tallySrc;
-        });
-      }
-    };
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
+const IndustryPainpoints = ({ title, painpoints, contactFormOptions, shortParagraph, domainName, contactFormLambdaUrl }) => {
   return (
-    <div className="bg-gray-100 text-gray-900 py-8">
-      <div className="container mx-auto pr-2 flex flex-col md:flex-row justify-between items-start">
-        <div className="md:w-2/3 mb-8 md:mb-0">
-          <h2 className="text-2xl font-bold mb-4 text-left pr-4" dangerouslySetInnerHTML={{ __html: title }}></h2>
-          <ul className="list-disc list-inside text-lg text-left">
-            {painpoints.map((painpoint, index) => (
-              <li key={index} dangerouslySetInnerHTML={{ __html: painpoint }}></li>
-            ))}
-          </ul>
-        </div>
-        <div className="md:w-1/3">
-          <iframe 
-            data-tally-src="https://tally.so/embed/w88zjO?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" 
-            loading="lazy" 
-            width="100%" 
-            height="552" 
-            frameBorder="0" 
-            marginHeight="0" 
-            marginWidth="0" 
-            title="Want us to help you?"
-          ></iframe>
+    <section className="bg-gray-100 py-12">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl font-bold mb-8">{title}</h2>
+        <div className="flex flex-wrap -mx-4">
+          <div className="w-full lg:w-2/3 px-4 mb-8 lg:mb-0">
+            <ul className="list-disc pl-5 mb-8">
+              {painpoints.map((point, index) => (
+                <li key={index} className="mb-4" dangerouslySetInnerHTML={{ __html: point }} />
+              ))}
+            </ul>
+            <p className="mb-8" dangerouslySetInnerHTML={{ __html: shortParagraph }} />
+          </div>
+          <div className="w-full lg:w-1/3 px-4">
+            <ContactForm 
+              options={contactFormOptions} 
+              domainName={domainName} 
+              lambdaUrl={contactFormLambdaUrl}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
 
 export default IndustryPainpoints;
