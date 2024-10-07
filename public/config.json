@@ -1,13 +1,8 @@
 {
-  "domainName": "automationforstaffing.com",
-  "gaTrackingId": "G-WPJKQSD213",
   "header": "Automation For Staffing",
   "icon": "money-bill",
   "title": "Automate Staffing Workflows: 80% Faster Timesheets, Invoices & Payroll",
   "description": "Revolutionize your workflow with our automated timesheet, invoicing, and payroll system.</br>Cut processing time by over 80% and focus on what truly matters - growing your business.",
-  "seoTitle": "Automate Staffing Workflows | 80% Faster Timesheets, Invoices & Payroll",
-  "seoDescription": "Revolutionize your staffing agency's workflow with our automated timesheet, invoicing, and payroll system. Cut processing time by over 80% and grow your business.",
-  "ogImage": "https://automationforstaffing.com/og-image.jpg",
   "buttonText": "Automate Your Business Today",
   "userReviews": [
     {
@@ -42,8 +37,6 @@
     "Automated Payroll",
     "Something Else"
   ],
-  "contactFormLambdaURL": "https://l4gp3adm7ct2iarebrdv5r2mf40hmtlw.lambda-url.us-east-1.on.aws/",
-  "contactPageLink": "/contact",
   "howItWorksTitle": "How It Works",
   "howItWorksDescription": "Our seamless automation solution transforms your staffing agency's workflow, dramatically reducing time spent on timesheet collection, approval, invoice generation, and payroll processing. By implementing our user-friendly system, you'll experience an astonishing 80% reduction in manual tasks related to these critical processes. Our approach ensures a smooth transition, minimal disruption to your current operations, and maximum efficiency gains. We work closely with your team to tailor the automation to your specific needs, ensuring that you maintain control while freeing up valuable time to focus on growing your business and nurturing client relationships. Experience the power of end-to-end automation that streamlines your operations, improves accuracy, and boosts your bottom line.",
   "howItWorksSteps": [
@@ -80,5 +73,12 @@
   "contactPageTitle": "Contact Us",
   "contactPageBlurb": "We're excited to hear from you! Whether you have questions about our automation solutions or want to discuss how we can streamline your staffing agency's workflows, we're here to help. Fill out the form below or schedule a call with us to get started on your journey to 80% faster timesheets, invoices, and payroll processing.",
   "contactFormTitle": "Send us a message",
-  "scheduleCallTitle": "Schedule a call"
+  "scheduleCallTitle": "Schedule a call",
+  "domainName": "automationforstaffing.com",
+  "gaTrackingId": "G-WPJKQSD213",
+  "seoTitle": "Automate Staffing Workflows | 80% Faster Timesheets, Invoices & Payroll",
+  "seoDescription": "Revolutionize your staffing agency's workflow with our automated timesheet, invoicing, and payroll system. Cut processing time by over 80% and grow your business.",
+  "ogImage": "https://automationforstaffing.com/og-image.jpg",
+  "contactFormLambdaURL": "https://l4gp3adm7ct2iarebrdv5r2mf40hmtlw.lambda-url.us-east-1.on.aws/",
+  "contactPageLink": "/contact"
 }
