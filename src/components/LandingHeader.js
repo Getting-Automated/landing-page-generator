@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const LandingHeader = ({ title, description, buttonText, buttonLink, userReviews, videoUrl }) => {
   return (
-    <div className="bg-gray-900 text-white py-8">
+    <header className="bg-gray-900 text-white py-8">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
         <div className="md:w-1/2 mb-8 md:mb-0 pr-2">
           <h1 className="text-5xl font-bold mb-4 mr-4 text-left" dangerouslySetInnerHTML={{ __html: title }}></h1>
@@ -21,7 +21,7 @@ const LandingHeader = ({ title, description, buttonText, buttonLink, userReviews
             <iframe
               className="absolute top-0 left-0 w-full h-full rounded-lg"
               src={videoUrl}
-              title="YouTube video"
+              title="Automation for Staffing Demo Video"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -30,7 +30,7 @@ const LandingHeader = ({ title, description, buttonText, buttonLink, userReviews
           <p className="mt-2">Don't just take our word for it</p>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 

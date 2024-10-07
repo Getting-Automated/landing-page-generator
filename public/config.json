@@ -5,6 +5,9 @@
   "icon": "money-bill",
   "title": "Automate Staffing Workflows: 80% Faster Timesheets, Invoices & Payroll",
   "description": "Revolutionize your workflow with our automated timesheet, invoicing, and payroll system.</br>Cut processing time by over 80% and focus on what truly matters - growing your business.",
+  "seoTitle": "Automate Staffing Workflows | 80% Faster Timesheets, Invoices & Payroll",
+  "seoDescription": "Revolutionize your staffing agency's workflow with our automated timesheet, invoicing, and payroll system. Cut processing time by over 80% and grow your business.",
+  "ogImage": "https://automationforstaffing.com/og-image.jpg",
   "buttonText": "Automate Your Business Today",
   "userReviews": [
     {
@@ -22,6 +25,7 @@
   ],
   "videoUrl": "https://www.youtube.com/embed/XMhU3bRsezA",
   "imageUrl": "https://via.placeholder.com/600x400",
+  "imageAltText": "Staffing automation workflow illustration",
   "painpointsTitle": "Staffing Agencies: Slash Timesheets, Invoicing, and Payroll by 80%",
   "painpoints": [
   "<b>Time-Consuming Manual Processes:</b> Staffing agencies struggle with tedious, error-prone tasks of manually handling timesheets, leading to delayed invoicing and payroll errors.",

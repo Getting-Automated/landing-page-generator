@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ReactGA from 'react-ga4';
 import './App.css';
@@ -8,10 +8,14 @@ import IndustryPainpoints from './components/IndustryPainpoints';
 import HowItWorks from './components/HowItWorks';
 import TheAutomationSpeaks from './components/TheAutomationSpeaks';
 import SocialValidation from './components/SocialValidation';
-import FAQSection from './components/FAQSection';
-import SecondCTA from './components/SecondCTA';
 import FooterBar from './components/FooterBar';
 import ContactPage from './components/ContactPage';
+import SEO from './components/SEO';
+import StructuredData from './components/StructuredData';
+
+// Lazy load components that are further down the page
+const LazyFAQSection = lazy(() => import('./components/FAQSection'));
+const LazySecondCTA = lazy(() => import('./components/SecondCTA'));
 
 function App() {
   const [config, setConfig] = useState(null);
@@ -47,6 +51,8 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <SEO config={config} />
+        <StructuredData config={config} />
         <HeaderBar 
           header={config.header} 
           icon={config.icon} 
@@ -81,21 +87,23 @@ function App() {
                 description={config.howItWorksDescription}
                 steps={config.howItWorksSteps}
               />
-              {/* <SocialValidation
+              <SocialValidation
                 title={config.socialValidationTitle}
                 text={config.socialValidationText}
-              /> */}
-              <FAQSection
-                title={config.faqTitle}
-                faqItems={config.faqItems}
               />
-              <SecondCTA
-                title={config.secondCtaTitle}
-                testimonial={config.secondCtaTestimonial}
-                buttonText={config.secondCtaButtonText}
-                buttonLink={config.contactPageLink}
-                users={config.secondCtaUsers}
-              />
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazyFAQSection
+                  title={config.faqTitle}
+                  faqItems={config.faqItems}
+                />
+                <LazySecondCTA
+                  title={config.secondCtaTitle}
+                  testimonial={config.secondCtaTestimonial}
+                  buttonText={config.secondCtaButtonText}
+                  buttonLink={config.contactPageLink}
+                  users={config.secondCtaUsers}
+                />
+              </Suspense>
             </>
           } />
           <Route path={config.contactPageLink} element={
