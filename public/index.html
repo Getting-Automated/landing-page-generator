@@ -5,18 +5,42 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="%REACT_APP_META_DESCRIPTION%" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>React App</title>
+    <title>%REACT_APP_TITLE%</title>
+    <link rel="canonical" href="%REACT_APP_DOMAIN_URL%" />
     <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <style>
+      /* Critical CSS for above-the-fold content */
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+          'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      h1 {
+        font-size: 2.25rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        margin-right: 1rem;
+        text-align: left;
+      }
+      @media (min-width: 768px) {
+        h1 {
+          font-size: 3rem;
+        }
+      }
+    </style>
+    <link rel="preload" href="%PUBLIC_URL%/static/css/main.b3ad1450.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="%PUBLIC_URL%/static/css/main.b3ad1450.css"></noscript>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script defer src="%PUBLIC_URL%/static/js/main.bea9357b.js"></script>
   </body>
 </html>

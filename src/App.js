@@ -79,7 +79,7 @@ function App() {
         />
         <Routes>
           <Route path="/" element={
-            <Suspense fallback={<div>Loading...</div>}>
+            <>
               <LazyLandingHeader
                 title={config.title}
                 description={config.description}
@@ -89,40 +89,42 @@ function App() {
                 videoUrl={config.videoUrl}
                 imageUrl={config.imageUrl}
               />
-              <LazyIndustryPainpoints
-                title={config.painpointsTitle}
-                painpoints={config.painpoints}
-                contactFormOptions={config.contactFormOptions}
-                shortParagraph={config.shortParagraph}
-                domainName={config.domainName}
-                contactFormLambdaUrl={config.contactFormLambdaUrl}
-              />
-              <LazyTheAutomationSpeaks
-                title={config.theAutomationSpeaksTitle}
-                text={config.theAutomationSpeaksText}
-                image={config.theAutomationSpeaksImage}
-              />
-              <LazyHowItWorks
-                title={config.howItWorksTitle}
-                description={config.howItWorksDescription}
-                steps={config.howItWorksSteps}
-              />
-              <LazySocialValidation
-                title={config.socialValidationTitle}
-                text={config.socialValidationText}
-              />
-              <LazyFAQSection
-                title={config.faqTitle}
-                faqItems={config.faqItems}
-              />
-              <LazySecondCTA
-                title={config.secondCtaTitle}
-                testimonial={config.secondCtaTestimonial}
-                buttonText={config.secondCtaButtonText}
-                buttonLink={config.contactPageLink}
-                users={config.secondCtaUsers}
-              />
-            </Suspense>
+              <Suspense fallback={<div>Loading...</div>}>
+                <LazyIndustryPainpoints
+                  title={config.painpointsTitle}
+                  painpoints={config.painpoints}
+                  contactFormOptions={config.contactFormOptions}
+                  shortParagraph={config.shortParagraph}
+                  domainName={config.domainName}
+                  contactFormLambdaUrl={config.contactFormLambdaUrl}
+                />
+                <LazyTheAutomationSpeaks
+                  title={config.theAutomationSpeaksTitle}
+                  text={config.theAutomationSpeaksText}
+                  image={config.theAutomationSpeaksImage}
+                />
+                <LazyHowItWorks
+                  title={config.howItWorksTitle}
+                  description={config.howItWorksDescription}
+                  steps={config.howItWorksSteps}
+                />
+                <LazySocialValidation
+                  title={config.socialValidationTitle}
+                  text={config.socialValidationText}
+                />
+                <LazyFAQSection
+                  title={config.faqTitle}
+                  faqItems={config.faqItems}
+                />
+                <LazySecondCTA
+                  title={config.secondCtaTitle}
+                  testimonial={config.secondCtaTestimonial}
+                  buttonText={config.secondCtaButtonText}
+                  buttonLink={config.contactPageLink}
+                  users={config.secondCtaUsers}
+                />
+              </Suspense>
+            </>
           } />
           <Route path={config.contactPageLink} element={
             <Suspense fallback={<div>Loading...</div>}>
