@@ -5,13 +5,14 @@ import HeaderBar from './components/HeaderBar';
 import FooterBar from './components/FooterBar';
 import SEO from './components/SEO';
 import StructuredData from './components/StructuredData';
+import ReactGA from 'react-ga4';
 
 // Lazy load all components
 const LazyLandingHeader = lazy(() => import('./components/LandingHeader'));
 const LazyIndustryPainpoints = lazy(() => import('./components/IndustryPainpoints'));
 const LazyHowItWorks = lazy(() => import('./components/HowItWorks'));
 const LazyTheAutomationSpeaks = lazy(() => import('./components/TheAutomationSpeaks'));
-const LazySocialValidation = lazy(() => import('./components/SocialValidation'));
+// const LazySocialValidation = lazy(() => import('./components/SocialValidation'));
 const LazyFAQSection = lazy(() => import('./components/FAQSection'));
 const LazySecondCTA = lazy(() => import('./components/SecondCTA'));
 const LazyContactPage = lazy(() => import('./components/ContactPage'));
@@ -30,9 +31,11 @@ function App() {
       })
       .then(data => {
         setConfig(data);
+        console.log('Configuration loaded:', data);
         // Initialize Google Analytics
         if (data.gaTrackingId) {
-          initializeGoogleAnalytics(data.gaTrackingId);
+          ReactGA.initialize(data.gaTrackingId);
+          console.log('Google Analytics initialized with ID:', data.gaTrackingId);
         }
       })
       .catch(error => {
@@ -41,25 +44,6 @@ function App() {
       });
   }, []);
 
-  const initializeGoogleAnalytics = (trackingId) => {
-    // Create script elements
-    const gtmScript = document.createElement('script');
-    gtmScript.async = true;
-    gtmScript.src = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`;
-
-    const inlineScript = document.createElement('script');
-    inlineScript.innerHTML = `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${trackingId}');
-    `;
-
-    // Append scripts to body
-    document.body.appendChild(gtmScript);
-    document.body.appendChild(inlineScript);
-  };
-
   if (error) {
     return <div>Error loading configuration: {error}</div>;
   }
@@ -67,6 +51,8 @@ function App() {
   if (!config) {
     return <div>Loading...</div>;
   }
+
+  console.log('Lambda URL in App.js:', config.contactFormLambdaURL);
 
   return (
     <Router>
@@ -96,7 +82,7 @@ function App() {
                   contactFormOptions={config.contactFormOptions}
                   shortParagraph={config.shortParagraph}
                   domainName={config.domainName}
-                  contactFormLambdaUrl={config.contactFormLambdaUrl}
+                  contactFormLambdaURL={config.contactFormLambdaURL}
                 />
                 <LazyTheAutomationSpeaks
                   title={config.theAutomationSpeaksTitle}
@@ -108,10 +94,10 @@ function App() {
                   description={config.howItWorksDescription}
                   steps={config.howItWorksSteps}
                 />
-                <LazySocialValidation
+                {/* <LazySocialValidation
                   title={config.socialValidationTitle}
                   text={config.socialValidationText}
-                />
+                /> */}
                 <LazyFAQSection
                   title={config.faqTitle}
                   faqItems={config.faqItems}
@@ -131,7 +117,7 @@ function App() {
               <LazyContactPage
                 contactFormOptions={config.contactFormOptions}
                 domainName={config.domainName}
-                contactFormLambdaUrl={config.contactFormLambdaUrl}
+                contactFormLambdaURL={config.contactFormLambdaURL} // Ensure this matches the config.json
                 calendlyUrl={config.calendlyUrl}
                 title={config.contactPageTitle}
                 blurb={config.contactPageBlurb}

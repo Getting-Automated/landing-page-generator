@@ -9,8 +9,9 @@ const LandingHeader = ({ title, description, buttonText, buttonLink, userReviews
   const videoId = videoUrl.split('/').pop();
 
   useEffect(() => {
-    // Fetch the maxresdefault thumbnail
-    setThumbnailUrl(`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`);
+    // Use a smaller thumbnail for mobile devices
+    const thumbnailSize = window.innerWidth < 768 ? 'hqdefault' : 'maxresdefault';
+    setThumbnailUrl(`https://img.youtube.com/vi/${videoId}/${thumbnailSize}.jpg`);
   }, [videoId]);
 
   const handlePlayClick = () => {

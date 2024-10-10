@@ -22,17 +22,26 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-      h1 {
+      .hero-title {
         font-size: 2.25rem;
         font-weight: bold;
         margin-bottom: 1rem;
         margin-right: 1rem;
         text-align: left;
+        color: white;
       }
       @media (min-width: 768px) {
-        h1 {
+        .hero-title {
           font-size: 3rem;
         }
+      }
+      .hero-section {
+        background-color: #1a202c;
+        padding: 2rem 1rem;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
       }
     </style>
     <link rel="preload" href="%PUBLIC_URL%/static/css/main.b3ad1450.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -40,7 +49,13 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div class="hero-section">
+        <div class="container">
+          <h1 class="hero-title">%REACT_APP_HERO_TITLE%</h1>
+        </div>
+      </div>
+    </div>
     <script defer src="%PUBLIC_URL%/static/js/main.bea9357b.js"></script>
   </body>
 </html>

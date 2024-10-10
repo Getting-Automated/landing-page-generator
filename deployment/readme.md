@@ -161,32 +161,48 @@ Adjust the values according to your setup.
 
 ## Features
 
+### AWS CLI Installation Check
+- Checks if AWS CLI is installed
+- Offers to install AWS CLI if not present
+- Verifies AWS CLI configuration
+
 ### S3 Bucket Management
 - Creates a new S3 bucket if it doesn't exist
 - Configures the bucket for static website hosting
 - Sets appropriate bucket policies for public read access
+- Verifies and reconfigures existing buckets if necessary
 
 ### CloudFront Distribution
 - Creates a new distribution or updates an existing one
 - Configures HTTPS redirection
 - Associates the SSL certificate
+- Invalidates CloudFront cache after deployment
 
 ### SSL Certificate Management
 - Checks for an existing certificate in AWS Certificate Manager (ACM)
 - Requests a new certificate if needed
 - Automatically creates DNS validation records for Route 53 users
 - Waits for certificate validation before proceeding
+- Checks certificate expiration and initiates renewal if necessary
 
 ### DNS Configuration
 - Supports automatic setup with Amazon Route 53
 - Provides detailed instructions for manual DNS configuration
 - Checks and reports on nameserver configuration for Route 53 users
+- Verifies correct nameserver setup before proceeding with deployment
 
 ### Validation and Error Handling
 - Validates S3 bucket names
 - Checks AWS CLI configuration
 - Provides informative error messages
-- Includes a basic rollback mechanism in case of deployment failure
+- Includes a rollback mechanism in case of deployment failure
+
+### Deployment Summary
+- Provides a comprehensive summary of the deployment process
+- Displays key information such as S3 bucket, CloudFront distribution, domain, and SSL certificate ARN
+
+### Cleanup
+- Removes temporary files and resources created during deployment
 
 ## DNS Configuration Methods
 
@@ -211,6 +227,7 @@ Adjust the values according to your setup.
 - Ensure all required environment variables are set correctly in `deploy-config.env`.
 - Verify that your AWS CLI is configured with the correct permissions.
 - For manual DNS setup, double-check that you've entered the provided records correctly at your DNS provider.
+- Check the `deploy.log` file for detailed logs of the deployment process.
 
 ## Cost Estimates
 

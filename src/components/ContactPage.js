@@ -4,7 +4,7 @@ import ContactForm from './ContactForm';
 const ContactPage = ({ 
   contactFormOptions, 
   domainName, 
-  contactFormLambdaUrl, 
+  contactFormLambdaURL,
   calendlyUrl, 
   title,
   blurb,
@@ -36,6 +36,8 @@ const ContactPage = ({
     return () => observer.disconnect();
   }, [calendlyLoaded]);
 
+  console.log('ContactPage received lambdaUrl:', contactFormLambdaURL);
+
   return (
     <div className="bg-white min-h-screen py-12">
       <div className="container mx-auto px-4">
@@ -56,7 +58,7 @@ const ContactPage = ({
                 <ContactForm
                   options={contactFormOptions}
                   domainName={domainName}
-                  lambdaUrl={contactFormLambdaUrl}
+                  lambdaUrl={contactFormLambdaURL}
                   onSubmitSuccess={() => setFormSubmitted(true)}
                 />
               )}

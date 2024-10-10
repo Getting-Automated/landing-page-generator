@@ -1,7 +1,7 @@
 import React from 'react';
 import ContactForm from './ContactForm';
 
-const IndustryPainpoints = ({ title, painpoints, contactFormOptions, shortParagraph, domainName, contactFormLambdaUrl }) => {
+const IndustryPainpoints = ({ title, painpoints, contactFormOptions, shortParagraph, domainName, contactFormLambdaURL }) => {
   return (
     <section className="bg-gray-100 py-12">
       <div className="container mx-auto px-4">
@@ -19,7 +19,7 @@ const IndustryPainpoints = ({ title, painpoints, contactFormOptions, shortParagr
             <ContactForm 
               options={contactFormOptions} 
               domainName={domainName} 
-              lambdaUrl={contactFormLambdaUrl}
+              lambdaUrl={contactFormLambdaURL}
             />
           </div>
         </div>

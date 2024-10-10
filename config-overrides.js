@@ -6,7 +6,8 @@ module.exports = function override(config, env) {
 
   process.env.REACT_APP_TITLE = configJson.seoTitle;
   process.env.REACT_APP_META_DESCRIPTION = configJson.seoDescription;
-  process.env.REACT_APP_DOMAIN_URL = `https://${configJson.domainName}`;
+  process.env.REACT_APP_DOMAIN_URL = `https://${configJson.domainName}/`;
+  process.env.REACT_APP_HERO_TITLE = configJson.title;
 
   return config;
 };

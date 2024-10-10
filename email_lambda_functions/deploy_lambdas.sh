@@ -15,6 +15,22 @@ export AWS_PAGER=""
 # IAM role configuration
 ROLE_NAME="workflowsy-lambda-role"
 POLICY_ARN="arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+SES_POLICY_NAME="workflowsy-ses-send-email-policy"
+
+# Create SES policy
+SES_POLICY_DOCUMENT='{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ses:SendEmail",
+                "ses:SendRawEmail"
+            ],
+            "Resource": "*"
+        }
+    ]
+}'
 
 # Check if IAM role exists
 if aws iam get-role --role-name "$ROLE_NAME" --region "$AWS_REGION" 2>&1 | grep -q "NoSuchEntity"; then
@@ -31,15 +47,28 @@ if aws iam get-role --role-name "$ROLE_NAME" --region "$AWS_REGION" 2>&1 | grep 
     }' --region "$AWS_REGION")
     LAMBDA_ROLE_ARN=$(echo "$ROLE_RESPONSE" | jq -r '.Role.Arn')
 
-    # Attach policy to the role
+    # Attach policies to the role
     aws iam attach-role-policy --role-name "$ROLE_NAME" --policy-arn "$POLICY_ARN" --region "$AWS_REGION"
+    
+    # Create and attach SES policy
+    aws iam create-policy --policy-name "$SES_POLICY_NAME" --policy-document "$SES_POLICY_DOCUMENT" --region "$AWS_REGION"
+    SES_POLICY_ARN=$(aws iam list-policies --query "Policies[?PolicyName=='$SES_POLICY_NAME'].Arn" --output text --region "$AWS_REGION")
+    aws iam attach-role-policy --role-name "$ROLE_NAME" --policy-arn "$SES_POLICY_ARN" --region "$AWS_REGION"
 
     # Wait for role to propagate
     echo "Waiting for IAM role to propagate..."
     sleep 10
 else
-    echo "IAM role already exists. Skipping creation."
+    echo "IAM role already exists. Updating policies..."
     LAMBDA_ROLE_ARN=$(aws iam get-role --role-name "$ROLE_NAME" --region "$AWS_REGION" | jq -r '.Role.Arn')
+    
+    # Ensure SES policy is attached
+    SES_POLICY_ARN=$(aws iam list-policies --query "Policies[?PolicyName=='$SES_POLICY_NAME'].Arn" --output text --region "$AWS_REGION")
+    if [ -z "$SES_POLICY_ARN" ]; then
+        aws iam create-policy --policy-name "$SES_POLICY_NAME" --policy-document "$SES_POLICY_DOCUMENT" --region "$AWS_REGION"
+        SES_POLICY_ARN=$(aws iam list-policies --query "Policies[?PolicyName=='$SES_POLICY_NAME'].Arn" --output text --region "$AWS_REGION")
+    fi
+    aws iam attach-role-policy --role-name "$ROLE_NAME" --policy-arn "$SES_POLICY_ARN" --region "$AWS_REGION"
 fi
 
 # Create a temporary directory for packaging
@@ -134,3 +163,16 @@ rm -rf temp_lambda_package
 rm lambda_function.zip
 
 echo "Deployment completed successfully."
+
+# Verify SES email addresses
+for email in "$SENDER_EMAIL" "$OWNER_EMAIL"; do
+    if ! aws ses get-identity-verification-attributes --identities "$email" --region "$AWS_REGION" | grep -q "Success"; then
+        echo "Verifying email address: $email"
+        aws ses verify-email-identity --email-address "$email" --region "$AWS_REGION"
+        echo "Verification email sent to $email. Please check your inbox and verify the email address."
+    else
+        echo "Email address $email is already verified."
+    fi
+done
+
+echo "SES configuration completed. Ensure to verify the email addresses if newly added."
