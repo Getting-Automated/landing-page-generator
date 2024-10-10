@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const LandingHeader = ({ title, description, buttonText, buttonLink, userReviews, videoUrl }) => {
+  const [loaded, setLoaded] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [thumbnailUrl, setThumbnailUrl] = useState('');
 
@@ -10,13 +11,33 @@ const LandingHeader = ({ title, description, buttonText, buttonLink, userReviews
 
   useEffect(() => {
     // Use a smaller thumbnail for mobile devices
-    const thumbnailSize = window.innerWidth < 768 ? 'hqdefault' : 'maxresdefault';
+    const thumbnailSize = window.innerWidth < 768 ? 'hqdefault' : 'hqdefault';
     setThumbnailUrl(`https://img.youtube.com/vi/${videoId}/${thumbnailSize}.jpg`);
+    setLoaded(true);
   }, [videoId]);
 
   const handlePlayClick = () => {
     setShowVideo(true);
   };
+
+  if (!loaded) {
+    return (
+      <header className="bg-gray-900 text-white py-8">
+        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
+          <div className="md:w-1/2 mb-8 md:mb-0 pr-2">
+            <div className="h-12 bg-gray-700 rounded mb-4 w-3/4"></div>
+            <div className="h-4 bg-gray-700 rounded mb-2 w-full"></div>
+            <div className="h-4 bg-gray-700 rounded mb-2 w-5/6"></div>
+            <div className="h-4 bg-gray-700 rounded mb-4 w-4/5"></div>
+            <div className="h-10 bg-blue-500 rounded w-40"></div>
+          </div>
+          <div className="md:w-1/2 flex flex-col justify-center items-center p-4">
+            <div className="w-full bg-gray-700 rounded" style={{ paddingTop: '56.25%' }}></div>
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header className="bg-gray-900 text-white py-8">
@@ -29,11 +50,9 @@ const LandingHeader = ({ title, description, buttonText, buttonLink, userReviews
               {buttonText}
             </button>
           </Link>
-          <div className="mt-4 flex items-center">
-          </div>
         </div>
         <div className="md:w-1/2 flex flex-col justify-center items-center p-4">
-          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+          <div className="video-container relative w-full" style={{ paddingTop: '56.25%' }}> {/* 16:9 aspect ratio */}
             {showVideo ? (
               <iframe
                 className="absolute top-0 left-0 w-full h-full rounded-lg"
@@ -42,7 +61,6 @@ const LandingHeader = ({ title, description, buttonText, buttonLink, userReviews
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                loading="lazy"
               ></iframe>
             ) : (
               <img 
@@ -52,7 +70,6 @@ const LandingHeader = ({ title, description, buttonText, buttonLink, userReviews
                 onClick={handlePlayClick}
                 width="640"
                 height="360"
-                loading="lazy"
               />
             )}
             {!showVideo && (

@@ -17,6 +17,12 @@ const LazyFAQSection = lazy(() => import('./components/FAQSection'));
 const LazySecondCTA = lazy(() => import('./components/SecondCTA'));
 const LazyContactPage = lazy(() => import('./components/ContactPage'));
 
+const LazyComponentLoader = ({ children, height = '300px' }) => (
+  <Suspense fallback={<div className="lazy-placeholder" style={{ height, background: '#f0f0f0', borderRadius: '8px' }}></div>}>
+    {children}
+  </Suspense>
+);
+
 function App() {
   const [config, setConfig] = useState(null);
   const [error, setError] = useState(null);
@@ -66,15 +72,17 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <LazyLandingHeader
-                title={config.title}
-                description={config.description}
-                buttonText={config.buttonText}
-                buttonLink={config.contactPageLink}
-                userReviews={config.userReviews}
-                videoUrl={config.videoUrl}
-                imageUrl={config.imageUrl}
-              />
+              <LazyComponentLoader height="400px">
+                <LazyLandingHeader
+                  title={config.title}
+                  description={config.description}
+                  buttonText={config.buttonText}
+                  buttonLink={config.contactPageLink}
+                  userReviews={config.userReviews}
+                  videoUrl={config.videoUrl}
+                  imageUrl={config.imageUrl}
+                />
+              </LazyComponentLoader>
               <Suspense fallback={<div>Loading...</div>}>
                 <LazyIndustryPainpoints
                   title={config.painpointsTitle}

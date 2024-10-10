@@ -1,8 +1,6 @@
 [0;34mℹ️ INFO:[0m Starting deployment process...
 [0;34mℹ️ INFO:[0m Checking existing resources...
 [0;34mℹ️ INFO:[0m S3 bucket already exists: automationforstaffing.com
-[0;34mℹ️ INFO:[0m Validating existing SSL certificate...
-[0;32m✅ SUCCESS:[0m SSL certificate is valid for automationforstaffing.com and is in ISSUED state.
 [0;34mℹ️ INFO:[0m Using existing S3 bucket...
 [0;34mℹ️ INFO:[0m Verifying S3 bucket configuration...
 [0;34mℹ️ INFO:[0m Building the React app...
@@ -17,19 +15,20 @@ Compiled successfully.
 
 File sizes after gzip:
 
-  78.59 kB  build/static/js/main.663cd326.js
-  4.25 kB   build/static/js/279.14808d3e.chunk.js
-  3.15 kB   build/static/css/main.b3ad1450.css
+  47.34 kB  build/static/js/main.1f9e6e2e.js
+  33.72 kB  build/static/js/825.b3d49440.chunk.js
+  3.27 kB   build/static/css/main.be0804ac.css
   2.67 kB   build/static/js/204.1e3d0a84.chunk.js
+  2.63 kB   build/static/js/710.fabe01e3.chunk.js
+  2.32 kB   build/static/js/148.7b2fe440.chunk.js
+  1.89 kB   build/static/js/455.51fd20ed.chunk.js
   1.78 kB   build/static/js/453.60950a58.chunk.js
-  1.65 kB   build/static/js/710.e791958b.chunk.js
-  1.31 kB   build/static/js/148.00d54f21.chunk.js
-  1.12 kB   build/static/js/83.7b32b72b.chunk.js
-  624 B     build/static/js/242.226397e9.chunk.js
-  599 B     build/static/js/50.1a1598b5.chunk.js
-  516 B     build/static/js/115.bfacc43f.chunk.js
-  482 B     build/static/js/206.9e7ff387.chunk.js
-  363 B     build/static/js/869.3fafdc04.chunk.js
+  1.23 kB   build/static/js/83.c806125b.chunk.js
+  624 B     build/static/js/242.f239919a.chunk.js
+  598 B     build/static/js/50.be967c36.chunk.js
+  517 B     build/static/js/115.b87a8de3.chunk.js
+  482 B     build/static/js/206.d3679cab.chunk.js
+  407 B     build/static/css/455.970846d2.chunk.css
 
 The project was built assuming it is hosted at /.
 You can control this with the homepage field in your package.json.
@@ -46,56 +45,80 @@ Find out more about deployment here:
 npm info ok
 [0;32m✅ SUCCESS:[0m React app built successfully.
 [0;34mℹ️ INFO:[0m Uploading to S3 bucket...
-Completed 1.9 KiB/4.8 MiB (10.9 KiB/s) with 36 file(s) remainingupload: build/asset-manifest.json to s3://automationforstaffing.com/asset-manifest.json
-Completed 1.9 KiB/4.8 MiB (10.9 KiB/s) with 35 file(s) remainingCompleted 7.3 KiB/4.8 MiB (24.7 KiB/s) with 35 file(s) remainingupload: build/static/css/main.b3ad1450.css.map to s3://automationforstaffing.com/static/css/main.b3ad1450.css.map
-Completed 7.3 KiB/4.8 MiB (24.7 KiB/s) with 34 file(s) remainingCompleted 8.2 KiB/4.8 MiB (16.9 KiB/s) with 34 file(s) remainingupload: build/static/js/115.bfacc43f.chunk.js to s3://automationforstaffing.com/static/js/115.bfacc43f.chunk.js
-Completed 8.2 KiB/4.8 MiB (16.9 KiB/s) with 33 file(s) remainingCompleted 9.9 KiB/4.8 MiB (16.5 KiB/s) with 33 file(s) remainingupload: build/static/js/115.bfacc43f.chunk.js.map to s3://automationforstaffing.com/static/js/115.bfacc43f.chunk.js.map
-Completed 9.9 KiB/4.8 MiB (16.5 KiB/s) with 32 file(s) remainingCompleted 13.9 KiB/4.8 MiB (19.2 KiB/s) with 32 file(s) remainingupload: build/static/js/148.00d54f21.chunk.js to s3://automationforstaffing.com/static/js/148.00d54f21.chunk.js
-Completed 13.9 KiB/4.8 MiB (19.2 KiB/s) with 31 file(s) remainingCompleted 15.3 KiB/4.8 MiB (19.9 KiB/s) with 31 file(s) remainingupload: build/index.html to s3://automationforstaffing.com/index.html
-Completed 15.3 KiB/4.8 MiB (19.9 KiB/s) with 30 file(s) remainingCompleted 15.4 KiB/4.8 MiB (19.4 KiB/s) with 30 file(s) remainingupload: build/robots.txt to s3://automationforstaffing.com/robots.txt
-Completed 15.4 KiB/4.8 MiB (19.4 KiB/s) with 29 file(s) remainingCompleted 20.6 KiB/4.8 MiB (24.8 KiB/s) with 29 file(s) remainingupload: build/logo192.png to s3://automationforstaffing.com/logo192.png
-Completed 20.6 KiB/4.8 MiB (24.8 KiB/s) with 28 file(s) remainingCompleted 21.1 KiB/4.8 MiB (25.3 KiB/s) with 28 file(s) remainingupload: build/manifest.json to s3://automationforstaffing.com/manifest.json
-Completed 21.1 KiB/4.8 MiB (25.3 KiB/s) with 27 file(s) remainingCompleted 29.8 KiB/4.8 MiB (35.5 KiB/s) with 27 file(s) remainingupload: build/static/js/148.00d54f21.chunk.js.map to s3://automationforstaffing.com/static/js/148.00d54f21.chunk.js.map
-Completed 29.8 KiB/4.8 MiB (35.5 KiB/s) with 26 file(s) remainingCompleted 33.6 KiB/4.8 MiB (39.9 KiB/s) with 26 file(s) remainingupload: build/favicon.ico to s3://automationforstaffing.com/favicon.ico
-Completed 33.6 KiB/4.8 MiB (39.9 KiB/s) with 25 file(s) remainingCompleted 44.4 KiB/4.8 MiB (52.0 KiB/s) with 25 file(s) remainingupload: build/config.json to s3://automationforstaffing.com/config.json
-Completed 44.4 KiB/4.8 MiB (52.0 KiB/s) with 24 file(s) remainingCompleted 300.4 KiB/4.8 MiB (343.4 KiB/s) with 24 file(s) remainingCompleted 310.6 KiB/4.8 MiB (346.9 KiB/s) with 24 file(s) remainingupload: build/static/css/main.b3ad1450.css to s3://automationforstaffing.com/static/css/main.b3ad1450.css
-Completed 310.6 KiB/4.8 MiB (346.9 KiB/s) with 23 file(s) remainingCompleted 320.0 KiB/4.8 MiB (356.2 KiB/s) with 23 file(s) remainingupload: build/logo512.png to s3://automationforstaffing.com/logo512.png
-Completed 320.0 KiB/4.8 MiB (356.2 KiB/s) with 22 file(s) remainingCompleted 325.9 KiB/4.8 MiB (356.2 KiB/s) with 22 file(s) remainingupload: build/static/js/204.1e3d0a84.chunk.js to s3://automationforstaffing.com/static/js/204.1e3d0a84.chunk.js
-Completed 325.9 KiB/4.8 MiB (356.2 KiB/s) with 21 file(s) remainingCompleted 581.9 KiB/4.8 MiB (631.9 KiB/s) with 21 file(s) remainingCompleted 582.7 KiB/4.8 MiB (613.7 KiB/s) with 21 file(s) remainingupload: build/static/js/206.9e7ff387.chunk.js to s3://automationforstaffing.com/static/js/206.9e7ff387.chunk.js
-Completed 582.7 KiB/4.8 MiB (613.7 KiB/s) with 20 file(s) remainingCompleted 583.8 KiB/4.8 MiB (614.0 KiB/s) with 20 file(s) remainingupload: build/static/js/242.226397e9.chunk.js to s3://automationforstaffing.com/static/js/242.226397e9.chunk.js
-Completed 583.8 KiB/4.8 MiB (614.0 KiB/s) with 19 file(s) remainingCompleted 586.4 KiB/4.8 MiB (614.7 KiB/s) with 19 file(s) remainingupload: build/static/js/242.226397e9.chunk.js.map to s3://automationforstaffing.com/static/js/242.226397e9.chunk.js.map
-Completed 586.4 KiB/4.8 MiB (614.7 KiB/s) with 18 file(s) remainingCompleted 842.4 KiB/4.8 MiB (873.5 KiB/s) with 18 file(s) remainingCompleted 1.1 MiB/4.8 MiB (1.1 MiB/s) with 18 file(s) remaining    Completed 1.1 MiB/4.8 MiB (1.1 MiB/s) with 18 file(s) remaining    upload: build/static/js/206.9e7ff387.chunk.js.map to s3://automationforstaffing.com/static/js/206.9e7ff387.chunk.js.map
-Completed 1.1 MiB/4.8 MiB (1.1 MiB/s) with 17 file(s) remainingCompleted 1.1 MiB/4.8 MiB (1.1 MiB/s) with 17 file(s) remainingupload: build/static/js/279.14808d3e.chunk.js to s3://automationforstaffing.com/static/js/279.14808d3e.chunk.js
-Completed 1.1 MiB/4.8 MiB (1.1 MiB/s) with 16 file(s) remainingCompleted 1.1 MiB/4.8 MiB (1.1 MiB/s) with 16 file(s) remainingupload: build/static/js/453.60950a58.chunk.js to s3://automationforstaffing.com/static/js/453.60950a58.chunk.js
-Completed 1.1 MiB/4.8 MiB (1.1 MiB/s) with 15 file(s) remainingCompleted 1.1 MiB/4.8 MiB (1.1 MiB/s) with 15 file(s) remainingupload: build/static/js/453.60950a58.chunk.js.map to s3://automationforstaffing.com/static/js/453.60950a58.chunk.js.map
-Completed 1.1 MiB/4.8 MiB (1.1 MiB/s) with 14 file(s) remainingCompleted 1.1 MiB/4.8 MiB (1.0 MiB/s) with 14 file(s) remainingupload: build/static/js/50.1a1598b5.chunk.js to s3://automationforstaffing.com/static/js/50.1a1598b5.chunk.js
-Completed 1.1 MiB/4.8 MiB (1.0 MiB/s) with 13 file(s) remainingCompleted 1.1 MiB/4.8 MiB (1.0 MiB/s) with 13 file(s) remainingupload: build/static/js/50.1a1598b5.chunk.js.map to s3://automationforstaffing.com/static/js/50.1a1598b5.chunk.js.map
-Completed 1.1 MiB/4.8 MiB (1.0 MiB/s) with 12 file(s) remainingCompleted 1.1 MiB/4.8 MiB (1.0 MiB/s) with 12 file(s) remainingupload: build/static/js/710.e791958b.chunk.js to s3://automationforstaffing.com/static/js/710.e791958b.chunk.js
-Completed 1.1 MiB/4.8 MiB (1.0 MiB/s) with 11 file(s) remainingCompleted 1.1 MiB/4.8 MiB (1018.9 KiB/s) with 11 file(s) remainingupload: build/static/js/83.7b32b72b.chunk.js to s3://automationforstaffing.com/static/js/83.7b32b72b.chunk.js
-Completed 1.1 MiB/4.8 MiB (1018.9 KiB/s) with 10 file(s) remainingCompleted 1.1 MiB/4.8 MiB (1.0 MiB/s) with 10 file(s) remaining   upload: build/staffing_workflow.png to s3://automationforstaffing.com/staffing_workflow.png
-Completed 1.1 MiB/4.8 MiB (1.0 MiB/s) with 9 file(s) remainingCompleted 1.1 MiB/4.8 MiB (1.0 MiB/s) with 9 file(s) remainingupload: build/static/js/83.7b32b72b.chunk.js.map to s3://automationforstaffing.com/static/js/83.7b32b72b.chunk.js.map
-Completed 1.1 MiB/4.8 MiB (1.0 MiB/s) with 8 file(s) remainingCompleted 1.2 MiB/4.8 MiB (1.0 MiB/s) with 8 file(s) remainingupload: build/static/js/710.e791958b.chunk.js.map to s3://automationforstaffing.com/static/js/710.e791958b.chunk.js.map
-Completed 1.2 MiB/4.8 MiB (1.0 MiB/s) with 7 file(s) remainingCompleted 1.2 MiB/4.8 MiB (1016.0 KiB/s) with 7 file(s) remainingupload: build/static/js/869.3fafdc04.chunk.js.map to s3://automationforstaffing.com/static/js/869.3fafdc04.chunk.js.map
-Completed 1.2 MiB/4.8 MiB (1016.0 KiB/s) with 6 file(s) remainingCompleted 1.4 MiB/4.8 MiB (1.2 MiB/s) with 6 file(s) remaining   Completed 1.7 MiB/4.8 MiB (1.4 MiB/s) with 6 file(s) remaining   Completed 1.9 MiB/4.8 MiB (1.6 MiB/s) with 6 file(s) remaining   Completed 2.2 MiB/4.8 MiB (1.8 MiB/s) with 6 file(s) remaining   Completed 2.4 MiB/4.8 MiB (2.1 MiB/s) with 6 file(s) remaining   Completed 2.4 MiB/4.8 MiB (2.0 MiB/s) with 6 file(s) remaining   upload: build/static/js/869.3fafdc04.chunk.js to s3://automationforstaffing.com/static/js/869.3fafdc04.chunk.js
-Completed 2.4 MiB/4.8 MiB (2.0 MiB/s) with 5 file(s) remainingCompleted 2.4 MiB/4.8 MiB (2.0 MiB/s) with 5 file(s) remainingupload: build/static/js/main.663cd326.js.LICENSE.txt to s3://automationforstaffing.com/static/js/main.663cd326.js.LICENSE.txt
-Completed 2.4 MiB/4.8 MiB (2.0 MiB/s) with 4 file(s) remainingCompleted 2.5 MiB/4.8 MiB (2.0 MiB/s) with 4 file(s) remainingupload: build/static/js/279.14808d3e.chunk.js.map to s3://automationforstaffing.com/static/js/279.14808d3e.chunk.js.map
-Completed 2.5 MiB/4.8 MiB (2.0 MiB/s) with 3 file(s) remainingCompleted 2.7 MiB/4.8 MiB (2.2 MiB/s) with 3 file(s) remainingCompleted 3.0 MiB/4.8 MiB (2.4 MiB/s) with 3 file(s) remainingCompleted 3.2 MiB/4.8 MiB (2.6 MiB/s) with 3 file(s) remainingCompleted 3.5 MiB/4.8 MiB (2.6 MiB/s) with 3 file(s) remainingCompleted 3.7 MiB/4.8 MiB (2.1 MiB/s) with 3 file(s) remainingupload: build/static/js/main.663cd326.js to s3://automationforstaffing.com/static/js/main.663cd326.js
-Completed 3.7 MiB/4.8 MiB (2.1 MiB/s) with 2 file(s) remainingCompleted 3.9 MiB/4.8 MiB (2.2 MiB/s) with 2 file(s) remainingCompleted 4.2 MiB/4.8 MiB (2.0 MiB/s) with 2 file(s) remainingCompleted 4.4 MiB/4.8 MiB (1.9 MiB/s) with 2 file(s) remainingCompleted 4.7 MiB/4.8 MiB (1.8 MiB/s) with 2 file(s) remainingCompleted 4.8 MiB/4.8 MiB (1.7 MiB/s) with 2 file(s) remainingupload: build/static/js/204.1e3d0a84.chunk.js.map to s3://automationforstaffing.com/static/js/204.1e3d0a84.chunk.js.map
-Completed 4.8 MiB/4.8 MiB (1.7 MiB/s) with 1 file(s) remainingCompleted 4.8 MiB/4.8 MiB (1.2 MiB/s) with 1 file(s) remainingupload: build/static/js/main.663cd326.js.map to s3://automationforstaffing.com/static/js/main.663cd326.js.map
+Completed 2.1 KiB/3.9 MiB (15.6 KiB/s) with 40 file(s) remainingupload: build/asset-manifest.json to s3://automationforstaffing.com/asset-manifest.json
+Completed 2.1 KiB/3.9 MiB (15.6 KiB/s) with 39 file(s) remainingCompleted 2.8 KiB/3.9 MiB (9.4 KiB/s) with 39 file(s) remaining upload: build/static/css/455.970846d2.chunk.css to s3://automationforstaffing.com/static/css/455.970846d2.chunk.css
+Completed 2.8 KiB/3.9 MiB (9.4 KiB/s) with 38 file(s) remainingCompleted 4.3 KiB/3.9 MiB (10.6 KiB/s) with 38 file(s) remainingupload: build/static/css/455.970846d2.chunk.css.map to s3://automationforstaffing.com/static/css/455.970846d2.chunk.css.map
+Completed 4.3 KiB/3.9 MiB (10.6 KiB/s) with 37 file(s) remainingCompleted 15.1 KiB/3.9 MiB (28.3 KiB/s) with 37 file(s) remainingupload: build/static/css/main.be0804ac.css to s3://automationforstaffing.com/static/css/main.be0804ac.css
+Completed 15.1 KiB/3.9 MiB (28.3 KiB/s) with 36 file(s) remainingCompleted 19.5 KiB/3.9 MiB (30.3 KiB/s) with 36 file(s) remainingupload: build/static/css/main.be0804ac.css.map to s3://automationforstaffing.com/static/css/main.be0804ac.css.map
+Completed 19.5 KiB/3.9 MiB (30.3 KiB/s) with 35 file(s) remainingCompleted 19.6 KiB/3.9 MiB (28.1 KiB/s) with 35 file(s) remainingupload: build/robots.txt to s3://automationforstaffing.com/robots.txt
+Completed 19.6 KiB/3.9 MiB (28.1 KiB/s) with 34 file(s) remainingCompleted 21.5 KiB/3.9 MiB (30.4 KiB/s) with 34 file(s) remainingCompleted 31.0 KiB/3.9 MiB (43.7 KiB/s) with 34 file(s) remainingupload: build/index.html to s3://automationforstaffing.com/index.html
+Completed 31.0 KiB/3.9 MiB (43.7 KiB/s) with 33 file(s) remainingupload: build/logo512.png to s3://automationforstaffing.com/logo512.png
+Completed 31.0 KiB/3.9 MiB (43.7 KiB/s) with 32 file(s) remainingCompleted 41.8 KiB/3.9 MiB (57.2 KiB/s) with 32 file(s) remainingupload: build/config.json to s3://automationforstaffing.com/config.json
+Completed 41.8 KiB/3.9 MiB (57.2 KiB/s) with 31 file(s) remainingCompleted 45.6 KiB/3.9 MiB (61.2 KiB/s) with 31 file(s) remainingupload: build/favicon.ico to s3://automationforstaffing.com/favicon.ico
+Completed 45.6 KiB/3.9 MiB (61.2 KiB/s) with 30 file(s) remainingCompleted 46.0 KiB/3.9 MiB (61.6 KiB/s) with 30 file(s) remainingupload: build/manifest.json to s3://automationforstaffing.com/manifest.json
+Completed 46.0 KiB/3.9 MiB (61.6 KiB/s) with 29 file(s) remainingCompleted 51.3 KiB/3.9 MiB (67.6 KiB/s) with 29 file(s) remainingupload: build/logo192.png to s3://automationforstaffing.com/logo192.png
+Completed 51.3 KiB/3.9 MiB (67.6 KiB/s) with 28 file(s) remainingCompleted 52.2 KiB/3.9 MiB (64.6 KiB/s) with 28 file(s) remainingupload: build/static/js/115.b87a8de3.chunk.js to s3://automationforstaffing.com/static/js/115.b87a8de3.chunk.js
+Completed 52.2 KiB/3.9 MiB (64.6 KiB/s) with 27 file(s) remainingCompleted 58.2 KiB/3.9 MiB (71.7 KiB/s) with 27 file(s) remainingupload: build/.DS_Store to s3://automationforstaffing.com/.DS_Store
+Completed 58.2 KiB/3.9 MiB (71.7 KiB/s) with 26 file(s) remainingCompleted 59.9 KiB/3.9 MiB (71.6 KiB/s) with 26 file(s) remainingupload: build/static/js/115.b87a8de3.chunk.js.map to s3://automationforstaffing.com/static/js/115.b87a8de3.chunk.js.map
+Completed 59.9 KiB/3.9 MiB (71.6 KiB/s) with 25 file(s) remainingCompleted 66.5 KiB/3.9 MiB (78.1 KiB/s) with 25 file(s) remainingupload: build/static/js/148.7b2fe440.chunk.js to s3://automationforstaffing.com/static/js/148.7b2fe440.chunk.js
+Completed 66.5 KiB/3.9 MiB (78.1 KiB/s) with 24 file(s) remainingCompleted 72.3 KiB/3.9 MiB (81.5 KiB/s) with 24 file(s) remainingupload: build/static/js/204.1e3d0a84.chunk.js to s3://automationforstaffing.com/static/js/204.1e3d0a84.chunk.js
+Completed 72.3 KiB/3.9 MiB (81.5 KiB/s) with 23 file(s) remainingCompleted 73.9 KiB/3.9 MiB (80.0 KiB/s) with 23 file(s) remainingupload: build/static/js/206.d3679cab.chunk.js.map to s3://automationforstaffing.com/static/js/206.d3679cab.chunk.js.map
+Completed 73.9 KiB/3.9 MiB (80.0 KiB/s) with 22 file(s) remainingCompleted 74.7 KiB/3.9 MiB (80.4 KiB/s) with 22 file(s) remainingupload: build/static/js/206.d3679cab.chunk.js to s3://automationforstaffing.com/static/js/206.d3679cab.chunk.js
+Completed 74.7 KiB/3.9 MiB (80.4 KiB/s) with 21 file(s) remainingCompleted 90.1 KiB/3.9 MiB (95.7 KiB/s) with 21 file(s) remainingupload: build/static/js/148.7b2fe440.chunk.js.map to s3://automationforstaffing.com/static/js/148.7b2fe440.chunk.js.map
+Completed 90.1 KiB/3.9 MiB (95.7 KiB/s) with 20 file(s) remainingCompleted 91.2 KiB/3.9 MiB (92.9 KiB/s) with 20 file(s) remainingupload: build/static/js/242.f239919a.chunk.js to s3://automationforstaffing.com/static/js/242.f239919a.chunk.js
+Completed 91.2 KiB/3.9 MiB (92.9 KiB/s) with 19 file(s) remainingCompleted 347.2 KiB/3.9 MiB (352.0 KiB/s) with 19 file(s) remainingCompleted 349.7 KiB/3.9 MiB (351.6 KiB/s) with 19 file(s) remainingCompleted 354.2 KiB/3.9 MiB (355.6 KiB/s) with 19 file(s) remainingupload: build/static/js/453.60950a58.chunk.js to s3://automationforstaffing.com/static/js/453.60950a58.chunk.js
+Completed 354.2 KiB/3.9 MiB (355.6 KiB/s) with 18 file(s) remainingupload: build/static/js/242.f239919a.chunk.js.map to s3://automationforstaffing.com/static/js/242.f239919a.chunk.js.map
+Completed 354.2 KiB/3.9 MiB (355.6 KiB/s) with 17 file(s) remainingCompleted 364.5 KiB/3.9 MiB (361.9 KiB/s) with 17 file(s) remainingupload: build/static/js/453.60950a58.chunk.js.map to s3://automationforstaffing.com/static/js/453.60950a58.chunk.js.map
+Completed 364.5 KiB/3.9 MiB (361.9 KiB/s) with 16 file(s) remainingCompleted 620.5 KiB/3.9 MiB (610.8 KiB/s) with 16 file(s) remainingCompleted 625.5 KiB/3.9 MiB (597.9 KiB/s) with 16 file(s) remainingupload: build/static/js/455.51fd20ed.chunk.js to s3://automationforstaffing.com/static/js/455.51fd20ed.chunk.js
+Completed 625.5 KiB/3.9 MiB (597.9 KiB/s) with 15 file(s) remainingCompleted 881.5 KiB/3.9 MiB (830.0 KiB/s) with 15 file(s) remainingCompleted 1.1 MiB/3.9 MiB (1.0 MiB/s) with 15 file(s) remaining    Completed 1.4 MiB/3.9 MiB (1.3 MiB/s) with 15 file(s) remaining    Completed 1.4 MiB/3.9 MiB (1.3 MiB/s) with 15 file(s) remaining    upload: build/static/js/50.be967c36.chunk.js to s3://automationforstaffing.com/static/js/50.be967c36.chunk.js
+Completed 1.4 MiB/3.9 MiB (1.3 MiB/s) with 14 file(s) remainingCompleted 1.4 MiB/3.9 MiB (1.3 MiB/s) with 14 file(s) remainingupload: build/static/js/50.be967c36.chunk.js.map to s3://automationforstaffing.com/static/js/50.be967c36.chunk.js.map
+Completed 1.4 MiB/3.9 MiB (1.3 MiB/s) with 13 file(s) remainingCompleted 1.4 MiB/3.9 MiB (1.2 MiB/s) with 13 file(s) remainingupload: build/static/js/710.fabe01e3.chunk.js to s3://automationforstaffing.com/static/js/710.fabe01e3.chunk.js
+Completed 1.4 MiB/3.9 MiB (1.2 MiB/s) with 12 file(s) remainingCompleted 1.4 MiB/3.9 MiB (1.2 MiB/s) with 12 file(s) remainingupload: build/static/js/455.51fd20ed.chunk.js.map to s3://automationforstaffing.com/static/js/455.51fd20ed.chunk.js.map
+Completed 1.4 MiB/3.9 MiB (1.2 MiB/s) with 11 file(s) remainingCompleted 1.4 MiB/3.9 MiB (1.2 MiB/s) with 11 file(s) remainingupload: build/static/js/825.b3d49440.chunk.js.LICENSE.txt to s3://automationforstaffing.com/static/js/825.b3d49440.chunk.js.LICENSE.txt
+Completed 1.4 MiB/3.9 MiB (1.2 MiB/s) with 10 file(s) remainingCompleted 1.4 MiB/3.9 MiB (1.2 MiB/s) with 10 file(s) remainingupload: build/static/js/710.fabe01e3.chunk.js.map to s3://automationforstaffing.com/static/js/710.fabe01e3.chunk.js.map
+Completed 1.4 MiB/3.9 MiB (1.2 MiB/s) with 9 file(s) remainingCompleted 1.4 MiB/3.9 MiB (1.2 MiB/s) with 9 file(s) remainingupload: build/static/js/83.c806125b.chunk.js to s3://automationforstaffing.com/static/js/83.c806125b.chunk.js
+Completed 1.4 MiB/3.9 MiB (1.2 MiB/s) with 8 file(s) remainingCompleted 1.4 MiB/3.9 MiB (1.2 MiB/s) with 8 file(s) remainingupload: build/static/js/83.c806125b.chunk.js.map to s3://automationforstaffing.com/static/js/83.c806125b.chunk.js.map
+Completed 1.4 MiB/3.9 MiB (1.2 MiB/s) with 7 file(s) remainingCompleted 1.7 MiB/3.9 MiB (1.4 MiB/s) with 7 file(s) remainingCompleted 1.7 MiB/3.9 MiB (1.4 MiB/s) with 7 file(s) remainingupload: build/static/js/main.1f9e6e2e.js.LICENSE.txt to s3://automationforstaffing.com/static/js/main.1f9e6e2e.js.LICENSE.txt
+Completed 1.7 MiB/3.9 MiB (1.4 MiB/s) with 6 file(s) remainingCompleted 1.8 MiB/3.9 MiB (1.4 MiB/s) with 6 file(s) remainingupload: build/static/js/204.1e3d0a84.chunk.js.map to s3://automationforstaffing.com/static/js/204.1e3d0a84.chunk.js.map
+Completed 1.8 MiB/3.9 MiB (1.4 MiB/s) with 5 file(s) remainingCompleted 1.9 MiB/3.9 MiB (1.5 MiB/s) with 5 file(s) remainingCompleted 2.0 MiB/3.9 MiB (1.6 MiB/s) with 5 file(s) remainingupload: build/static/js/825.b3d49440.chunk.js to s3://automationforstaffing.com/static/js/825.b3d49440.chunk.js
+Completed 2.0 MiB/3.9 MiB (1.6 MiB/s) with 4 file(s) remainingupload: build/staffing_workflow.webp to s3://automationforstaffing.com/staffing_workflow.webp
+Completed 2.0 MiB/3.9 MiB (1.6 MiB/s) with 3 file(s) remainingCompleted 2.2 MiB/3.9 MiB (1.8 MiB/s) with 3 file(s) remainingCompleted 2.5 MiB/3.9 MiB (2.0 MiB/s) with 3 file(s) remainingCompleted 2.7 MiB/3.9 MiB (2.1 MiB/s) with 3 file(s) remainingCompleted 3.0 MiB/3.9 MiB (2.3 MiB/s) with 3 file(s) remainingCompleted 3.2 MiB/3.9 MiB (2.4 MiB/s) with 3 file(s) remainingCompleted 3.5 MiB/3.9 MiB (2.6 MiB/s) with 3 file(s) remainingCompleted 3.6 MiB/3.9 MiB (2.7 MiB/s) with 3 file(s) remainingupload: build/static/js/main.1f9e6e2e.js to s3://automationforstaffing.com/static/js/main.1f9e6e2e.js
+Completed 3.6 MiB/3.9 MiB (2.7 MiB/s) with 2 file(s) remainingCompleted 3.7 MiB/3.9 MiB (2.6 MiB/s) with 2 file(s) remainingupload: build/static/js/main.1f9e6e2e.js.map to s3://automationforstaffing.com/static/js/main.1f9e6e2e.js.map
+Completed 3.7 MiB/3.9 MiB (2.6 MiB/s) with 1 file(s) remainingCompleted 3.9 MiB/3.9 MiB (2.7 MiB/s) with 1 file(s) remainingupload: build/static/js/825.b3d49440.chunk.js.map to s3://automationforstaffing.com/static/js/825.b3d49440.chunk.js.map
 [0;32m✅ SUCCESS:[0m Successfully uploaded build to S3 bucket.
-[0;34mℹ️ INFO:[0m Using existing SSL certificate...
 [0;34mℹ️ INFO:[0m Validating existing SSL certificate...
-[0;32m✅ SUCCESS:[0m SSL certificate is valid for automationforstaffing.com and is in ISSUED state.
+[0;34mℹ️ INFO:[0m Checking certificate: arn:aws:acm:us-east-1:381492058603:certificate/eaf591e4-705e-45fd-bac2-39f18f443098
+[0;32m✅ SUCCESS:[0m Valid certificate found for automationforstaffing.com. ARN: arn:aws:acm:us-east-1:381492058603:certificate/eaf591e4-705e-45fd-bac2-39f18f443098
+[0;34mℹ️ INFO:[0m Using existing valid SSL certificate: arn:aws:acm:us-east-1:381492058603:certificate/eaf591e4-705e-45fd-bac2-39f18f443098
 [0;34mℹ️ INFO:[0m Setting up CloudFront distribution...
 [0;34mℹ️ INFO:[0m Checking for existing CloudFront distribution...
 [0;34mℹ️ INFO:[0m Using existing CloudFront distribution. ID: E2FR9ESTCIPGZZ
 [0;34mℹ️ INFO:[0m Initiating CloudFront cache invalidation...
-[0;32m✅ SUCCESS:[0m CloudFront invalidation initiated. ID: I35LYHAXGJ487EDBD4A78DX7L6
+[0;32m✅ SUCCESS:[0m CloudFront invalidation initiated. ID: IJ7LW8YVL8P6078DB8D5O53HM
 [0;34mℹ️ INFO:[0m The invalidation process has started but may take up to 15 minutes to complete.
 [0;34mℹ️ INFO:[0m Your updated content may be available sooner, but full propagation can take some time.
 [0;34mℹ️ INFO:[0m You can check the status of the invalidation in the AWS CloudFront console.
 [0;34mℹ️ INFO:[0m Continuing with the deployment process...
-[0;34mℹ️ INFO:[0m Manual DNS configuration selected.
+[0;34mℹ️ INFO:[0m Checking DNS configuration for automationforstaffing.com...
+[0;34mℹ️ INFO:[0m DNS is not yet configured to point to the CloudFront distribution.
+[0;34mℹ️ INFO:[0m dig result: 13.249.98.44
+13.249.98.118
+13.249.98.99
+13.249.98.16
+[0;34mℹ️ INFO:[0m host result: automationforstaffing.com has address 13.249.98.16
+automationforstaffing.com has address 13.249.98.99
+automationforstaffing.com has address 13.249.98.44
+automationforstaffing.com has address 13.249.98.118
+automationforstaffing.com has IPv6 address 2600:9000:2502:ec00:1:c0a8:4740:93a1
+automationforstaffing.com has IPv6 address 2600:9000:2502:dc00:1:c0a8:4740:93a1
+automationforstaffing.com has IPv6 address 2600:9000:2502:1000:1:c0a8:4740:93a1
+automationforstaffing.com has IPv6 address 2600:9000:2502:a800:1:c0a8:4740:93a1
+automationforstaffing.com has IPv6 address 2600:9000:2502:2600:1:c0a8:4740:93a1
+automationforstaffing.com has IPv6 address 2600:9000:2502:d200:1:c0a8:4740:93a1
+automationforstaffing.com has IPv6 address 2600:9000:2502:c000:1:c0a8:4740:93a1
+automationforstaffing.com has IPv6 address 2600:9000:2502:5a00:1:c0a8:4740:93a1
+[0;34mℹ️ INFO:[0m nslookup result: Address: 13.249.98.44
+[0;34mℹ️ INFO:[0m Manual DNS configuration required.
 [0;34mℹ️ INFO:[0m Retrieving CloudFront and Certificate information...
 [0;34mℹ️ INFO:[0m To point your domain to this website and validate your SSL certificate, create the following DNS records at your DNS provider:
 
@@ -116,16 +139,6 @@ Completed 4.8 MiB/4.8 MiB (1.7 MiB/s) with 1 file(s) remainingCompleted 4.8 MiB
    Name: www
    Value: d1zn4ehkzsqtr1.cloudfront.net
 
-3. For SSL certificate validation:
-   Type: CNAME
-   Name: _d99a288751ffe0ec3dec64718e775338.automationforstaffing.com.
-   Value: _4b616f476b94994e487c6dc93126eb9b.djqtsrsxkq.acm-validations.aws.
-
-   Type: CNAME
-   Name: _bb742805f1a0e5374185737bf433db72.www.automationforstaffing.com.
-   Value: _22b8181e01b2650826bcd0f77466ec5f.djqtsrsxkq.acm-validations.aws.
-
-
 [1;33m⚠️ WARNING:[0m Please update your DNS records as instructed above.
 [0;34mℹ️ INFO:[0m If your DNS provider doesn't support ALIAS records for the root domain:
 [0;34mℹ️ INFO:[0m 1. Set up the CNAME for 'www' as shown in Option B.
@@ -133,18 +146,16 @@ Completed 4.8 MiB/4.8 MiB (1.7 MiB/s) with 1 file(s) remainingCompleted 4.8 MiB
 [0;34mℹ️ INFO:[0m 3. This ensures both the root domain and www subdomain work correctly.
 
 [0;34mℹ️ INFO:[0m After updating, it may take up to 48 hours for DNS changes to propagate fully.
-[0;34mℹ️ INFO:[0m Certificate validation may take several minutes to a few hours after the DNS records are updated.
 [0;34mℹ️ INFO:[0m Once the changes have propagated, run this script again to complete the deployment.
-[1;33m⚠️ WARNING:[0m DNS changes may not have propagated yet. Your site might not be immediately accessible.
 [0;32m✅ SUCCESS:[0m Deployment process completed.
 
-[0;34mDeployment Summary:[0m
-  • S3 Bucket: [0;32mautomationforstaffing.com[0m
-  • CloudFront Distribution: [0;32mE2FR9ESTCIPGZZ[0m
-  • Domain: [0;32mautomationforstaffing.com[0m
-  • SSL Certificate ARN: [0;32marn:aws:acm:us-east-1:381492058603:certificate/eaf591e4-705e-45fd-bac2-39f18f443098[0m
+[0;34mℹ️ INFO:[0m Deployment Summary:
+  • S3 Bucket: automationforstaffing.com
+  • CloudFront Distribution: E2FR9ESTCIPGZZ
+  • Domain: automationforstaffing.com
+  • SSL Certificate ARN: arn:aws:acm:us-east-1:381492058603:certificate/eaf591e4-705e-45fd-bac2-39f18f443098
 
-[1;33mNext Steps:[0m
+[1;33m⚠️ WARNING:[0m Next Steps:
   1. Update your DNS records as instructed (if not already done).
   2. Wait for DNS propagation (up to 48 hours).
   3. Your website will be accessible at https://automationforstaffing.com
