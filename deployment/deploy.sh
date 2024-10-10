@@ -271,70 +271,65 @@ validate_cloudfront_distribution() {
 validate_ssl_certificate() {
     print_message "info" "Validating existing SSL certificate..."
     
-    # Get the domains the certificate is valid for
-    CERT_DOMAINS=$(aws acm describe-certificate --certificate-arn $CERTIFICATE_ARN --region us-east-1 --query 'Certificate.DomainValidationOptions[].DomainName' --output text --profile $AWS_CLI_PROFILE)
+    # Get all certificates for the domain
+    CERT_ARNS=$(aws acm list-certificates --region us-east-1 --query "CertificateSummaryList[?DomainName=='$DOMAIN_NAME'].CertificateArn" --output text --profile $AWS_CLI_PROFILE)
     
-    # Check if the intended domain is in the list of valid domains
-    if ! echo "$CERT_DOMAINS" | grep -q "$DOMAIN_NAME"; then
-        print_message "error" "The existing certificate (ARN: $CERTIFICATE_ARN) does not support the domain $DOMAIN_NAME"
-        print_message "info" "Certificate is valid for: $CERT_DOMAINS"
-        print_message "warning" "A new certificate needs to be requested for $DOMAIN_NAME"
-        print_message "info" "Please remove the existing certificate ARN from your configuration and run the script again to request a new certificate."
-        exit 1
+    if [ -z "$CERT_ARNS" ]; then
+        print_message "warning" "No certificates found for $DOMAIN_NAME"
+        return 1
     fi
     
-    # Check certificate status
-    CERT_STATUS=$(aws acm describe-certificate --certificate-arn $CERTIFICATE_ARN --region us-east-1 --query 'Certificate.Status' --output text --profile $AWS_CLI_PROFILE)
-    
-    if [ "$CERT_STATUS" != "ISSUED" ]; then
-        print_message "error" "Certificate is not in ISSUED state. Current status: $CERT_STATUS"
-        print_message "info" "Here are the steps to resolve this issue:"
-        echo
+    for CERT_ARN in $CERT_ARNS; do
+        print_message "info" "Checking certificate: $CERT_ARN"
         
-        # Get the CNAME records for validation
-        CNAME_RECORDS=$(aws acm describe-certificate --certificate-arn $CERTIFICATE_ARN --region us-east-1 --query 'Certificate.DomainValidationOptions[].ResourceRecord | [?Type==`CNAME`]' --output json --profile $AWS_CLI_PROFILE)
+        # Get the domains the certificate is valid for
+        CERT_DOMAINS=$(aws acm describe-certificate --certificate-arn $CERT_ARN --region us-east-1 --query 'Certificate.DomainValidationOptions[].DomainName' --output text --profile $AWS_CLI_PROFILE)
         
-        if [ "$DNS_METHOD" = "route53" ]; then
-            print_message "info" "1. Ensure your domain's nameservers are correctly set to Route 53:"
-            print_message "info" "   - Go to your domain registrar's website"
-            print_message "info" "   - Update the nameservers to the Route 53 nameservers"
-            print_message "info" "   - Wait for the nameserver changes to propagate (up to 48 hours)"
-            echo
-            print_message "info" "2. Once nameservers are updated, go to the AWS Certificate Manager (ACM) console: https://console.aws.amazon.com/acm/"
-            print_message "info" "3. Find the certificate for $DOMAIN_NAME"
-            print_message "info" "4. Check the 'Status' and 'Domain' columns for more information"
-            echo
-            print_message "info" "If the status is 'Pending validation':"
-            print_message "info" "  a. Click on the certificate to view details"
-            print_message "info" "  b. In the 'Domains' section, look for the CNAME records you need to add"
-            print_message "info" "  c. These CNAME records should be automatically added to Route 53"
-            print_message "info" "  d. If not, you can create the record sets manually in Route 53"
+        # Check if the intended domain is in the list of valid domains
+        if echo "$CERT_DOMAINS" | grep -q "$DOMAIN_NAME"; then
+            # Check certificate status
+            CERT_STATUS=$(aws acm describe-certificate --certificate-arn $CERT_ARN --region us-east-1 --query 'Certificate.Status' --output text --profile $AWS_CLI_PROFILE)
+            
+            if [ "$CERT_STATUS" = "ISSUED" ]; then
+                print_message "success" "Valid certificate found for $DOMAIN_NAME. ARN: $CERT_ARN"
+                export CERTIFICATE_ARN=$CERT_ARN
+                return 0
+            else
+                print_message "warning" "Certificate found but status is $CERT_STATUS. ARN: $CERT_ARN"
+                print_message "info" "Please follow these steps:"
+                print_message "info" "1. Check the AWS ACM console for more details on the certificate status"
+                print_message "info" "2. Ensure that the DNS validation records are correctly set up"
+                print_message "info" "3. If using Route 53, verify that the hosted zone is correctly configured"
+                print_message "info" "4. Check that your domain's nameservers are correctly set at your registrar"
+                print_message "info" "5. Wait for the DNS changes to propagate (this can take up to 48 hours)"
+                print_message "info" "6. Once the certificate status changes to 'Issued', run this script again"
+                echo
+                print_message "info" "If you continue to have issues or the status is different:"
+                print_message "info" "  - Check the AWS ACM troubleshooting guide: https://docs.aws.amazon.com/acm/latest/userguide/troubleshooting.html"
+                print_message "info" "  - Verify that you have the necessary permissions to validate the certificate"
+                echo
+                print_message "info" "If you need to request a new certificate:"
+                print_message "info" "  1. Delete the current certificate in ACM"
+                print_message "info" "  2. Remove the CERTIFICATE_ARN from your deploy-config.env file"
+                print_message "info" "  3. Run this script again to request a new certificate"
+                return 1
+            fi
         else
-            print_message "info" "For manual DNS configuration, please add the following CNAME records to your DNS provider:"
-            echo "$CNAME_RECORDS" | jq -r '.[] | "   Name: \(.Name)\n   Value: \(.Value)\n"'
-            print_message "info" "Steps to add these records:"
-            print_message "info" "1. Log in to your DNS provider's management console"
-            print_message "info" "2. Navigate to the DNS management section for $DOMAIN_NAME"
-            print_message "info" "3. Add each CNAME record listed above"
-            print_message "info" "4. Save your changes"
+            print_message "warning" "Certificate does not support $DOMAIN_NAME. ARN: $CERT_ARN"
         fi
-        
-        echo
-        print_message "info" "5. Wait for the DNS changes to propagate (this can take up to 48 hours)"
-        print_message "info" "6. Once the certificate status changes to 'Issued', run this script again"
-        echo
-        print_message "info" "If you continue to have issues or the status is different:"
-        print_message "info" "  - Check the AWS ACM troubleshooting guide: https://docs.aws.amazon.com/acm/latest/userguide/troubleshooting.html"
-        print_message "info" "  - Verify that you have the necessary permissions to validate the certificate"
-        echo
-        print_message "info" "If you need to request a new certificate:"
-        print_message "info" "  1. Delete the current certificate in ACM"
-        print_message "info" "  2. Remove the CERTIFICATE_ARN from your deploy-config.env file"
-        print_message "info" "  3. Run this script again to request a new certificate"
-        exit 1
-    fi
+    done
     
-    print_message "success" "SSL certificate is valid for $DOMAIN_NAME and is in ISSUED state."
+    print_message "error" "No valid certificate found for $DOMAIN_NAME"
+    print_message "info" "Available certificates and their domains:"
+    for CERT_ARN in $CERT_ARNS; do
+        CERT_DOMAINS=$(aws acm describe-certificate --certificate-arn $CERT_ARN --region us-east-1 --query 'Certificate.DomainValidationOptions[].DomainName' --output text --profile $AWS_CLI_PROFILE)
+        echo "  ARN: $CERT_ARN"
+        echo "  Domains: $CERT_DOMAINS"
+        echo
+    done
+    
+    print_message "info" "A new certificate needs to be requested for $DOMAIN_NAME"
+    return 1
 }
 
 # Function to check Route 53 hosted zone
@@ -347,8 +342,47 @@ check_route53_hosted_zone() {
 
 # Function to check DNS propagation
 check_dns_propagation() {
-    if ! dig +short $DOMAIN_NAME | grep -q $(aws cloudfront get-distribution --id $CLOUDFRONT_DISTRIBUTION_ID --query "Distribution.DomainName" --output text --profile $AWS_CLI_PROFILE); then
-        print_message "warning" "DNS changes may not have propagated yet. Your site might not be immediately accessible."
+    print_message "info" "Checking DNS configuration for $DOMAIN_NAME..."
+    
+    # Ensure we have the CloudFront domain
+    if [ -z "$CLOUDFRONT_DOMAIN" ]; then
+        get_cloudfront_domain
+    fi
+    
+    # Method 1: Using dig
+    dig_result=$(dig +short $DOMAIN_NAME) || {
+        print_message "error" "Error checking DNS with dig"
+        return 1
+    }
+
+    # Method 2: Using host
+    host_result=$(host $DOMAIN_NAME) || {
+        print_message "error" "Error checking DNS with host"
+        return 1
+    }
+
+    # Method 3: Using nslookup
+    nslookup_result=$(nslookup $DOMAIN_NAME | grep 'Address:' | tail -n1) || {
+        print_message "error" "Error checking DNS with nslookup"
+        return 1
+    }
+
+    # Check results
+    if echo "$dig_result" | grep -q "$CLOUDFRONT_DOMAIN"; then
+        print_message "success" "DNS is correctly configured. $DOMAIN_NAME is pointing to the CloudFront distribution (verified with dig)."
+        return 0
+    elif echo "$host_result" | grep -q "$CLOUDFRONT_DOMAIN"; then
+        print_message "success" "DNS is correctly configured. $DOMAIN_NAME is pointing to the CloudFront distribution (verified with host)."
+        return 0
+    elif echo "$nslookup_result" | grep -q "$CLOUDFRONT_DOMAIN"; then
+        print_message "success" "DNS is correctly configured. $DOMAIN_NAME is pointing to the CloudFront distribution (verified with nslookup)."
+        return 0
+    else
+        print_message "info" "DNS is not yet configured to point to the CloudFront distribution."
+        print_message "info" "dig result: $dig_result"
+        print_message "info" "host result: $host_result"
+        print_message "info" "nslookup result: $nslookup_result"
+        return 1
     fi
 }
 
@@ -602,9 +636,6 @@ provide_manual_dns_info() {
         return 1
     fi
     
-    # Get certificate validation records
-    CERT_VALIDATION_RECORDS=$(aws acm describe-certificate --certificate-arn $CERTIFICATE_ARN --region us-east-1 --query "Certificate.DomainValidationOptions[].ResourceRecord" --output json --profile $AWS_CLI_PROFILE)
-    
     print_message "info" "To point your domain to this website and validate your SSL certificate, create the following DNS records at your DNS provider:"
     echo
     echo "1. For the root domain (${DOMAIN_NAME}):"
@@ -624,9 +655,16 @@ provide_manual_dns_info() {
     echo "   Name: www"
     echo "   Value: ${CF_DOMAIN}"
     echo
-    echo "3. For SSL certificate validation:"
-    echo "$CERT_VALIDATION_RECORDS" | jq -r '.[] | "   Type: \(.Type)\n   Name: \(.Name)\n   Value: \(.Value)\n"'
-    echo
+    
+    # Only show SSL certificate validation records if a new certificate was created
+    if [ "${CERTIFICATE_CREATED:-false}" = true ]; then
+        # Get certificate validation records
+        CERT_VALIDATION_RECORDS=$(aws acm describe-certificate --certificate-arn $CERTIFICATE_ARN --region us-east-1 --query "Certificate.DomainValidationOptions[].ResourceRecord" --output json --profile $AWS_CLI_PROFILE)
+        
+        echo "3. For SSL certificate validation:"
+        echo "$CERT_VALIDATION_RECORDS" | jq -r '.[] | "   Type: \(.Type)\n   Name: \(.Name)\n   Value: \(.Value)\n"'
+    fi
+    
     print_message "warning" "Please update your DNS records as instructed above."
     print_message "info" "If your DNS provider doesn't support ALIAS records for the root domain:"
     print_message "info" "1. Set up the CNAME for 'www' as shown in Option B."
@@ -634,7 +672,9 @@ provide_manual_dns_info() {
     print_message "info" "3. This ensures both the root domain and www subdomain work correctly."
     echo
     print_message "info" "After updating, it may take up to 48 hours for DNS changes to propagate fully."
-    print_message "info" "Certificate validation may take several minutes to a few hours after the DNS records are updated."
+    if [ "${CERTIFICATE_CREATED:-false}" = true ]; then
+        print_message "info" "Certificate validation may take several minutes to a few hours after the DNS records are updated."
+    fi
     print_message "info" "Once the changes have propagated, run this script again to complete the deployment."
 }
 
@@ -707,18 +747,6 @@ check_existing_resources() {
         print_message "info" "CloudFront distribution already exists: $DISTRIBUTION_ID"
     fi
     
-    # Check SSL certificate
-    CERTIFICATE_ARN=$(aws acm list-certificates --region us-east-1 --query "CertificateSummaryList[?DomainName=='$DOMAIN_NAME'].CertificateArn" --output text --profile $AWS_CLI_PROFILE)
-    if [ -z "$CERTIFICATE_ARN" ] || [ "$CERTIFICATE_ARN" = "None" ]; then
-        CERT_EXISTS=false
-    else
-        CERT_EXISTS=true
-        if ! validate_ssl_certificate; then
-            CERT_EXISTS=false
-            CERTIFICATE_ARN=""
-        fi
-    fi
-
     # Check Route 53 hosted zone
     if [ "$DNS_METHOD" = "route53" ]; then
         HOSTED_ZONE_ID=$(aws route53 list-hosted-zones-by-name --dns-name "$DOMAIN_NAME." --query "HostedZones[0].Id" --output text --profile $AWS_CLI_PROFILE)
@@ -824,6 +852,15 @@ check_nameservers() {
     fi
 }
 
+# Function to get CloudFront domain
+get_cloudfront_domain() {
+    CLOUDFRONT_DOMAIN=$(aws cloudfront get-distribution --id $CLOUDFRONT_DISTRIBUTION_ID --query "Distribution.DomainName" --output text --profile $AWS_CLI_PROFILE)
+    if [ -z "$CLOUDFRONT_DOMAIN" ]; then
+        print_message "error" "Failed to retrieve CloudFront domain name."
+        exit 1
+    fi
+}
+
 # Main execution flow
 set -e  # Exit immediately if a command exits with a non-zero status
 trap 'rollback' ERR  # Call rollback function on any error
@@ -883,13 +920,18 @@ fi
 # Build the React app
 build_react_app
 
-# Request and validate certificate
-if [ "$CERT_EXISTS" = false ]; then
-    request_and_validate_certificate
-    CERTIFICATE_CREATED=true
+# Check for valid certificate
+if validate_ssl_certificate; then
+    print_message "info" "Using existing valid SSL certificate: $CERTIFICATE_ARN"
 else
-    print_message "info" "Using existing SSL certificate..."
-    validate_ssl_certificate
+    print_message "info" "No valid certificate found. Requesting a new one..."
+    if request_and_validate_certificate; then
+        CERTIFICATE_CREATED=true
+        print_message "success" "New certificate created and validated successfully."
+    else
+        print_message "error" "Failed to create and validate a new certificate."
+        exit 1
+    fi
 fi
 
 # Create or get CloudFront distribution
@@ -901,6 +943,9 @@ else
     print_message "info" "Using existing CloudFront distribution..."
     validate_cloudfront_distribution
 fi
+
+# Get CloudFront domain
+get_cloudfront_domain
 
 # Invalidate CloudFront cache
 print_message "info" "Initiating CloudFront cache invalidation..."
@@ -917,46 +962,54 @@ fi
 
 print_message "info" "Continuing with the deployment process..."
 
-# Handle DNS updates
+# Main execution flow for DNS updates
 if [ "$DNS_METHOD" = "route53" ]; then
     create_or_get_hosted_zone_and_check_nameservers
-    read -p "Do you want to update DNS using Route 53? (y/n) " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        update_route53_dns
-        ROUTE53_RECORDS_CREATED=true
+    if ! check_dns_propagation; then
+        read -p "Do you want to update DNS using Route 53? (y/n) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            update_route53_dns
+        else
+            print_message "warning" "Skipping Route 53 DNS update."
+        fi
     else
-        print_message "warning" "Skipping Route 53 DNS update."
+        print_message "info" "DNS is already correctly configured. No updates needed."
     fi
 elif [ "$DNS_METHOD" = "manual" ]; then
-    print_message "info" "Manual DNS configuration selected."
-    provide_manual_dns_info
+    if ! check_dns_propagation; then
+        print_message "info" "Manual DNS configuration required."
+        provide_manual_dns_info
+    else
+        print_message "info" "DNS is already correctly configured. No manual updates needed."
+    fi
 else
     print_message "error" "Invalid DNS_METHOD in .env file. Please set it to either 'route53' or 'manual'."
     exit 1
 fi
 
-# Check DNS propagation
-check_dns_propagation
-
 # Deployment summary
 print_message "success" "Deployment process completed."
-echo -e "\n${BLUE}Deployment Summary:${NC}"
-echo -e "  • S3 Bucket: ${GREEN}$S3_BUCKET${NC}"
-echo -e "  • CloudFront Distribution: ${GREEN}$CLOUDFRONT_DISTRIBUTION_ID${NC}"
-echo -e "  • Domain: ${GREEN}$DOMAIN_NAME${NC}"
-echo -e "  • SSL Certificate ARN: ${GREEN}$CERTIFICATE_ARN${NC}"
+echo
+print_message "info" "Deployment Summary:"
+echo "  • S3 Bucket: $S3_BUCKET"
+echo "  • CloudFront Distribution: $CLOUDFRONT_DISTRIBUTION_ID"
+echo "  • Domain: $DOMAIN_NAME"
+echo "  • SSL Certificate ARN: $CERTIFICATE_ARN"
 
 if [ "$CF_EXISTS" = true ]; then
-    echo -e "\n${GREEN}Your updated website should be accessible at https://$DOMAIN_NAME${NC}"
+    echo
+    print_message "success" "Your updated website should be accessible at https://$DOMAIN_NAME"
     echo "Note: It may take a few minutes for changes to propagate through CloudFront."
 elif [ "$DNS_METHOD" = "manual" ]; then
-    echo -e "\n${YELLOW}Next Steps:${NC}"
+    echo
+    print_message "warning" "Next Steps:"
     echo "  1. Update your DNS records as instructed (if not already done)."
     echo "  2. Wait for DNS propagation (up to 48 hours)."
     echo "  3. Your website will be accessible at https://$DOMAIN_NAME"
 else
-    echo -e "\n${GREEN}Your website should be accessible at https://$DOMAIN_NAME${NC}"
+    echo
+    print_message "success" "Your website should be accessible at https://$DOMAIN_NAME"
     echo "Note: It may take a few minutes for changes to propagate."
 fi
 

@@ -13,6 +13,34 @@ This script automates the deployment process of a React application to AWS, incl
 2. A domain name that you own
 3. Node.js and npm installed (for building the React app)
 
+## Deployment Scripts
+
+This project includes deployment scripts in two versions:
+
+1. PowerShell script for Windows users: `deployment/deploy.ps1`
+2. Shell script for Mac and Linux users: `deployment/deploy.sh`
+
+### Windows Users (PowerShell)
+
+To run the script, open PowerShell and navigate to the deployment directory:
+
+```powershell
+cd path/to/your/project/deployment
+.\deploy.ps1
+```
+
+### Mac and Linux Users (Shell)
+
+To run the script, open your terminal and navigate to the deployment directory:
+
+```bash
+cd path/to/your/project/deployment
+chmod +x deploy.sh  # Make the script executable (if needed)
+./deploy.sh
+```
+
+Both scripts follow the same logical flow and provide similar functionality.
+
 ## Logical Script Flow
 
 ```mermaid
@@ -135,7 +163,6 @@ S3_BUCKET=your-bucket-name
 AWS_CLI_PROFILE=default
 DOMAIN_NAME=example.com
 DNS_METHOD=route53  # Options: 'route53' or 'manual'
-CERTIFICATE_ARN=
 ```
 
 Adjust the values according to your setup.
@@ -257,3 +284,37 @@ Below is a rough estimate of monthly costs for running a simple React landing pa
 Always refer to the [AWS Pricing Calculator](https://calculator.aws/) for more accurate estimates based on your specific usage patterns. For many small, low-traffic sites, actual costs might fall within AWS's free tier offerings, potentially resulting in no charges for the first 12 months.
 
 > **Important**: While AWS offers a free tier, certain services may incur charges depending on usage. Monitor your AWS billing dashboard regularly to avoid unexpected costs.
+
+## Security Best Practices
+- Use IAM roles with least privilege principle for AWS CLI configuration
+- Regularly rotate your AWS access keys
+- Enable MFA for your AWS account
+- Use AWS CloudTrail to monitor API calls
+
+## Customization
+The deployment scripts can be customized to fit your specific needs. Some options include:
+- Modifying the CloudFront distribution settings
+- Adjusting S3 bucket policies
+- Customizing the React build process
+
+## Version Control
+It's recommended to commit your changes to version control before running the deployment script. This allows you to easily revert changes if needed.
+
+## Rollback Process
+In case of deployment failure, the script includes a rollback mechanism that attempts to:
+- Delete newly created S3 buckets
+- Remove new CloudFront distributions
+- Delete newly created SSL certificates
+- Remove any created Route 53 records
+
+Always check the `deploy.log` file for detailed information about any rollback actions performed.
+
+## Contributing
+Contributions to improve the deployment scripts are welcome. Please follow these steps:
+1. Fork the repository
+2. Create a new branch for your feature
+3. Commit your changes
+4. Push to your branch
+5. Create a new Pull Request
+
+Please ensure your code adheres to the existing style and includes appropriate tests.
